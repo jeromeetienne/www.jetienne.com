@@ -1,35 +1,58 @@
 <html>
-<title>Jerome Etienne</title>
-<style type="text/css" media="screen"> 
-	* { margin: 0; padding: 0; }
-	body {
-		font-family: 'Palatino Linotype', Palatino, Georgia, 'Times New Roman', serif;
-		background-color: #fff;
-		overflow: auto;
-		color: #ccc;
-		font-size: 25px;
-	}
-	h1 {
-		font-weight: normal;
-		margin-bottom: 30px;
-		color: #222;
-		font-size: 70px;
-	}
-	a {
-		text-decoration: none;
-		color: #777;
-	}
-	a:hover {
-		color: #444;
-	}
-	#container {
-		width: 100%;
-		text-align: center;
-		margin: 100px 0;
-	}
-</style>
+<head>
+	<title>Jerome Etienne</title>
+	<style type="text/css" media="screen"> 
+		* { margin: 0; padding: 0; }
+		body {
+			font-family: 'Palatino Linotype', Palatino, Georgia, 'Times New Roman', serif;
+			background-color: #fff;
+			overflow: auto;
+			color: #ccc;
+			font-size: 25px;
+		}
+		h1 {
+			font-weight: normal;
+			margin-bottom: 30px;
+			color: #222;
+			font-size: 70px;
+		}
+		a {
+			text-decoration: none;
+			color: #777;
+		}
+		a:hover {
+			color: #444;
+		}
+		#container {
+			width: 100%;
+			text-align: center;
+			margin: 100px 0;
+		}
+		#footer {
+			position: absolute;
+			bottom: 0;
+			right: 0;
+			border: 0;
+			margin: 10px;
+			font-size: 16px;
+		}
+	</style>
+	<!-- google analytic -->
+	<script type="text/javascript">	
+		var _gaq = _gaq || [];
+		_gaq.push(['_setAccount', 'UA-4037844-1']);
+		_gaq.push(['_trackPageview']);
+		
+		(function() {
+		  var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+		  ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+		  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+		})();
+	</script>
+</head>
 <body>
 	
+<!-- container -->
 <div id="container"> 
 	<h1>Hi.</h1>
 	<a href="http://github.com/jeromeetienne">code</a>
@@ -43,8 +66,8 @@
 <a href="http://github.com/jeromeetienne">
 	<img style="position: absolute; top: 0; right: 0; border: 0;" src="http://s3.amazonaws.com/github/ribbons/forkme_right_gray_6d6d6d.png" alt="Fork me on GitHub" />
 </a>
-
-<div  style="position: absolute; bottom: 0; right: 0; border: 0; margin: 10px;font-size: 16px;"> 
+<!-- footer -->
+<div id="footer"> 
 	<a href="mailto:jerome.etienne@gmail.com">email</a> 
 	|
 	<a href="http://calendaraboutnothing.com/~jeromeetienne">calendar</a> 
