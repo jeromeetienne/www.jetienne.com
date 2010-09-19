@@ -12,7 +12,7 @@ window.addEventListener('load', function() {
   // We need to rebuild the normals after extruding the vertices.
   Pre3d.ShapeUtils.rebuildMeta(shape);
   renderer.draw_overdraw = false;
-  renderer.fill_rgba = new Pre3d.RGBA(0xC0/255, 0xC0/255, 0xC0/255, 1);
+  renderer.fill_rgba = new Pre3d.RGBA(0x0/255, 0x0/255, 0x0/255, 1);
   renderer.ctx.lineWidth = 0.9;
   renderer.stroke_rgba = new Pre3d.RGBA(0x45/255, 0xef/255, 0xef/255, 0.4);
 
