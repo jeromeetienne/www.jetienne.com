@@ -1,6 +1,6 @@
 // (c) Dean McNamee <dean@gmail.com>.  All rights reserved.
 
-window.addEventListener('load', function() {
+window.addEventListener('load', function() { 
   var screen_canvas = document.getElementById('canvas');
   var renderer = new Pre3d.Renderer(screen_canvas);
 
