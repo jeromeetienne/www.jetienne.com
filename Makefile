@@ -13,7 +13,7 @@ monitor: build
 server:
 	lighttpd -f lighttpd.conf  -D
 
-upload: build
+deploy: build
 	(cd $(DESTDIR) && git add . && git commit -a -m 'new build' && git push origin gh-pages)
 
 build:
