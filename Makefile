@@ -13,8 +13,11 @@ monitor: build
 server:
 	lighttpd -f lighttpd.conf  -D
 
-deploy: build
+deploy: buildCss build
 	(cd $(DESTDIR) && git add . && git commit -a -m 'new build' && git push origin gh-pages)
+
+buildCss:
+	(cd portfolio/css && make lessc_obj)
 
 build:
 	(cd $(DESTDIR) && git reset --hard origin/gh-pages)
