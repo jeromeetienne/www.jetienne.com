@@ -10,7 +10,7 @@ PHANTOMJS_HOME="$HOME/opt/phantomjs"
 # generate the image with phantom.js
 # - take a snapshot with a page 960x720
 # - there is a delay which can be big or not depending on the page
-$PHANTOMJS_HOME/bin/phantomjs $PHANTOMJS_HOME/examples/rasterize.js "$URL" "$FNAME"
+phantomjs /usr/share/doc/phantomjs/examples/rasterize.js "$URL" "$FNAME"
 
 # reduce the image to 960x720
 mogrify -crop 960x720+0+0 "$FNAME"
