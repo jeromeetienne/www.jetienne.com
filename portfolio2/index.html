@@ -20,12 +20,14 @@
 -->
 
 <div class="navigation">
-	<label class="enabled"><input name="tag_node" 		type="checkbox" checked="checked">Node.js</label>
-	<label class="enabled"><input name="tag_browser"	type="checkbox" checked="checked">Browser</label>
-	<label class="enabled"><input name="tag_game" 		type="checkbox" checked="checked">Game</label>
-	<label class="enabled"><input name="tag_jquery"		type="checkbox" checked="checked">jQuery</label>
-	<label class="enabled"><input name="tag_realtime"	type="checkbox" checked="checked">Realtime</label>
-	<label class="enabled"><input name="tag_micro"		type="checkbox" checked="checked">MicroLib</label>
+	<label data-status="enabled"><input name="tag_node" 	type="checkbox" checked="checked">Node.js</label>
+	<label data-status="enabled"><input name="tag_browser"	type="checkbox" checked="checked">Browser</label>
+	<label data-status="enabled"><input name="tag_game" 	type="checkbox" checked="checked">Game</label>
+	<label data-status="enabled"><input name="tag_jquery"	type="checkbox" checked="checked">jQuery</label>
+	<label data-status="enabled"><input name="tag_realtime"	type="checkbox" checked="checked">Realtime</label>
+	<label data-status="enabled"><input name="tag_micro"	type="checkbox" checked="checked">MicroLib</label>
+<!--	<label data-status="enabled"><input name="tag_none"	type="checkbox" checked="checked">None</label>
+-->	<label data-status="enabled"><input name="tag_all"	type="checkbox" checked="checked">All</label>
 </div>
 <style>
 html {
@@ -37,37 +39,54 @@ html {
 	font-weight	: bolder;
 }
 .navigation label {
-	border			: 2px solid #999;
-	border-radius		: 15px;
-	padding			: 8px;
+	border		: 2px solid #999;
+	border-radius	: 15px;
+	padding		: 8px;
+	cursor		: pointer;
 }
-.navigation label.enabled {
+.navigation label[data-status="enabled"] {
 	background-color	: #ccc;
 }
-.navigation label.disabled {
+.navigation label[data-status="disabled"] {
 	background-color	: #666;
 }
 .navigation input {
 	display			: none;
 }
+.slidebox {
+	-webkit-transition-duration: 0.5s;
+	-webkit-transition-property: all;
+	-webkit-transition-timing-function: ease-in-out;
+}
+.slidebox[data-status="enabled"] {
+	opacity	: 1.0;
+}
+.slidebox[data-status="disabled"] {
+	opacity	: 0.2;
+}
+
 </style>
 <script>
 jQuery(function(){
+	jQuery(".slidebox").attr('data-status', "enabled")
 	jQuery("div.navigation input").change(function(event){
 		var tagName	= jQuery(this).attr("name");
-		var checked	= jQuery(this).attr("checked");
-		console.log("navigation change", event, tagName, checked)
-		//jQuery(this).attr("name")
-		var cssStr 	= ""+
-		".slidebox."+tagName+" {"+
-		"	display	: "+(checked ? "block" : "none")+";"+
-		"}";
-		//document.write('<style>\n#slidemenubar{\nwidth:'+slidemenu_width+';}\n<\/style>\n')
-		jQuery("<style>").attr('type', 'text/css').html(cssStr).appendTo('head');
+
+		jQuery(".slidebox").attr('data-status', "disabled");
+		if( tagName === "tag_all" ){
+			jQuery(".slidebox").attr('data-status', "enabled");
+		}else if( tagName === "tag_none" ){
+		}else{
+			jQuery(".slidebox."+tagName).attr('data-status', "enabled");			
+		}
 		
-		jQuery(this).parent("label").removeClass("enabled")
-		jQuery(this).parent("label").removeClass("disabled")
-		jQuery(this).parent("label").addClass(checked? "enabled" : "disabled")
+		jQuery("div.navigation label").attr('data-status', "disabled")
+		if( tagName === "tag_all" ){
+			jQuery("div.navigation label").attr('data-status', "enabled")
+		}else if( tagName === "tag_none" ){
+		}else{
+			jQuery(this).parent("label").attr('data-status', "enabled")
+		}
 	});
 });
 </script>
@@ -89,7 +108,7 @@ jQuery(function(){
 			<p class='visit'>Visit <a href='http://notes.jetienne.com/2011/04/13/pacmaze-v1-release.html'>pacmaze</a></p>			
 		</div>
 	</div>
-	<div class="slidebox tag_node tag_browser">
+	<div class="slidebox tag_micro tag_node tag_browser">
 		<h1 class="slide">Gowiththeflow.js - Async flow control micro library</h1>
 		<div class="content">
 			<h3><a href='https://github.com/jeromeetienne/gowiththeflow.js'>Gowiththeflow.js</a></h3>
@@ -186,7 +205,7 @@ jQuery(function(){
 			<p class='visit'>Visit <a href='http://notes.jetienne.com/2011/03/22/microeventjs.html'>microevent.js</a></p>			
 		</div>
 	</div>	
-	<div class="slidebox tag_micro">
+	<div class="slidebox tag_micro tag_node tag_browser">
 		<h1 class="slide">MicroCache.js - A micro library for caching</h1>
 		<div class="content">
 			<h3><a href='https://github.com/jeromeetienne/microcache.js'>MicroCache.js</a></h3>
