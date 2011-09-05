@@ -1,0 +1,222 @@
+---
+
+title: Help
+category: docs
+layout: default
+toc:
+  - { title: Reporting bugs and issues, anchor: reporting_bugs_and_issues }
+  - { title: Support license, anchor: support_license }
+  - { title: Additional resources, anchor: additional_resources }
+  - { title: Unloaded media, anchor: unloaded_media }
+  - { title: Images, anchor: images }
+  - { title: @font-face fonts, anchor: fontface_fonts }
+  - { title: Accessing the instance, anchor: accessing_the_instance }
+  - { title: CSS transforms in Opera, anchor: css_transforms_in_opera }
+  - { title: Infinite Scroll with filtering or sorting, anchor: infinite_scroll_with_filtering_or_sorting}
+  - { title: Flash, anchor: flash }
+  - { title: Poor type rendering in WebKit, anchor: poor_type_rendering_in_webkit }
+  - { title: Right-to-left layouts, anchor: righttoleft_layouts }
+  - { title: Preventing clicks on filtered items, anchor: unclickable-filtered }
+
+---
+
+
+## Reporting bugs and issues
+
+[Report bugs and issues on GitHub](http://github.com/desandro/isotope/issues). 
+
+### Guidelines {: #issues-guidelines}
+
++ Look over open and closed issues before submitting yours.
++ Add a link to a live site with the bug. If the project is confidential, try re-creating it in [jsFiddle](http://jsfiddle.net).
+
+The issues tracker is for bugs and issues &mdash; when Isotope doesn't work as expected. It is not for implementation issues &mdash; when you are having trouble setting up Isotope. Consider a [Support License](http://metafizzy.co/#support-license) for implementation issues. If you're not sure, go ahead and submit an issue.
+
+## Support license
+
+If you've tried everything and would really like to get my eyes looking at your code, you can purchase a [Support License from Metafizzy](http://metafizzy.co/#support-license).
+
+Support License is included with Isotope Commercial License.
+
+## Additional resources
+
++ The [Metafizzy blog](http://metafizzy.co/blog/) has posts that cover specialized use cases
++ [Sites using Isotope on Zootool](http://zootool.com/user/desandro/tag:isotope), has screenshots
++ [Sites using Isotope on Delicious](http://www.delicious.com/desandro/using:isotope)
++ [Miscelleanous Isotope content](http://www.delicious.com/desandro/re:isotope)
++ [Stack Overflow questions on Isotope](http://www.delicious.com/desandro/re:isotope+stackoverflow)
+
+## Unloaded media
+ 
+Most layout modes (i.e masonry, fitRows) need to measure the size of each item to appropriately account for its space in the layout. Unloaded media files like images and @font-face fonts can throw off layout and cause item elements to overlap one another. Ideally, Isotope layouts should be initialized after all inner content has loaded.
+ 
+## Images
+
+### Inline dimensions
+
+For images, the best method is to specify the width and height of images inline.
+
+{% highlight html %}
+
+<img src="img-file.jpg" width="280" height="160" />
+
+{% endhighlight %}
+
+If you’re using a PHP-based CMS, you can use the [getimagesize](http://php.net/manual/en/function.getimagesize.php) function.
+
+### imagesLoaded plugin
+
+The next best solution is to use the [imagesLoaded plugin](https://github.com/desandro/imagesloaded) included with Isotope. It's a small plugin that finds all the images in a context, and fires a callback function once all the images have loaded.
+
+{% highlight javascript %}
+
+var $container = $('#container');
+
+$container.imagesLoaded( function(){
+  $container.isotope({
+    // options...
+  });
+});
+
+{% endhighlight %}
+
+### `$(window).load()`
+
+Another solution is to initialize Isotope inside `$(window).load()` instead of `$(document).ready()`. This will trigger Isotope after all the media on the page has loaded.
+
+{% highlight javascript %}
+
+$(window).load(function(){
+  $('#container').isotope({
+    // options...
+  });
+});
+
+{% endhighlight %}
+
+## @font-face fonts
+
+Both Typekit and Google WebFont Loader provide font events to control scripts based on how fonts are loaded. 
+
++ [Typekit font events](http://blog.typekit.com/2010/10/18/more-control-with-typekits-font-events/)
++ [Google WebFont Loader: Events](http://code.google.com/apis/webfonts/docs/webfont_loader.html#Events)
+
+## Accessing the instance
+
+[Similar to jQuery UI](http://docs.jquery.com/UI_Developer_Guide#Internal_functions_.26_scopes_explained), Isotope stores a instance containing properties, settings and methods with jQuery.data. You can access the instance with the `'isotope'` namespace.
+
+{% highlight javascript %}
+
+var $container = $('#container');
+
+// initialize Isotope instance
+$container.isotope({
+  // options...
+});
+
+// get Isotope instance
+var isotopeInstance = $container.data('isotope');
+isotopeInstance.options; // options
+isotopeInstance.$filteredAtoms; // jQuery object of filtered & sorted item elements
+isotopeInstance.masonry.columnWidth; // Layout mode specific properties
+
+{% endhighlight %}
+
+## CSS transforms in Opera
+
+Currently, [using CSS transforms in Opera distorts text rendering](http://dropshado.ws/post/1260101028/opera-transform-issues). To avoid this issue, I recommend disabling Isotope to use transforms.  
+
+Isotope's default options are already set to not use CSS transforms in Opera.
+
+{% highlight javascript %}
+
+// Isotope default options
+hiddenStyle : Modernizr.csstransforms && !$.browser.opera ? 
+  { opacity : 0, scale : 0.001 } : // browsers support CSS transforms, not Opera
+  { opacity : 0 }, // other browsers, including Opera
+visibleStyle : Modernizr.csstransforms && !$.browser.opera ? 
+  { opacity : 1, scale : 1 } : // browsers support CSS transforms, not Opera
+  { opacity : 1 }, // other browsers, including Opera
+animationEngine : $.browser.opera ? 'jquery' : 'best-available',
+
+{% endhighlight %}
+
+Also note that the [recommended transition CSS](animating.html#css_transitions) is missing declarations for Opera.
+
+## Infinite Scroll with filtering or sorting
+
+I recommend against using Infinite Scroll with filtering or sorting. This combination produces a unnecessarily complex user interaction that will frustrate your users. New content gets added, but part of it might be hidden. There is no way for the user to tell what gets hidden or re-arranged when Infinite Scroll adds more content. Exercise [moderation](introduction.html#moderation) with your Isotope implementation.
+
+If you do plan on implementing Infinite Scroll with filtering or sorting (which is a _bad idea_), use the `insert` method instead of `appended`.  
+
+## Flash
+
+[Using CSS transforms with Flash content is a bit buggy in Safari and Firefox](http://dropshado.ws/post/4085720152/css-transforms-breaking-flash). This is problematic when using Isotope on item elements that contain Flash content like YouTube or Vimeo videos, Flash ads, or Flash audio players.
+
+The best way to resolve this issue is to disable CSS transforms by setting the [`transformsEnabled` option](options.html#transformsenabled) to <code><span class="kc">false</span></code>.
+
+## Poor type rendering in WebKit
+
+Type rendering may appear poor in WebKit browsers like Chrome and Safari. This is because of Isotope's activation of hardware acceleration. The solution is to add add a matching background to the item elements. See more: [dropshado.ws - Resolving anti-aliasing on WebKit hardware-accelerated elements](http://dropshado.ws/post/6142339613/resolving-anti-aliasing-on-webkit-hardware-accelerated).
+
+## Right-to-left layouts
+
+Isotope can be modified to support right-to-left layouts for languages like Hebrew and Arabic.
+
+[**See test: Right to left**](../tests/right-to-left.html)
+
+You'll need to make the following changes:
+
++ Modify Isotope's `_positionAbs` method
++ Set `transformsEnabled: false` in the Isotope options
++ Add CSS transition property styles for right/top.
+
+### JavaScript for right-to-left support
+
+{% highlight javascript %}
+
+// modify Isotope's absolute position method
+$.Isotope.prototype._positionAbs = function( x, y ) {
+  return { right: x, top: y };
+};
+
+// initialize Isotope
+$('#container').isotope({
+  transformsEnabled: false
+  // other options...
+});
+
+{% endhighlight %}
+
+### CSS for right-to-left support
+
+{% highlight css %}
+
+.isotope .isotope-item {
+  -webkit-transition-property: right, top, -webkit-transform, opacity;
+     -moz-transition-property: right, top, -moz-transform, opacity;
+       -o-transition-property: right, top, -o-transform, opacity;
+          transition-property: right, top, transform, opacity;
+}
+
+{% endhighlight %}
+
+## Preventing clicks on filtered items {: #unclickable-filtered}
+
+The [recommended CSS for filtering](filtering.html#recommended_css) includes `pointer-events: none` for `.isotope-hidden`. Unfortunately, Opera and Internet Explorer still let click events propagate with this style in place. But you can still dismiss click events in your click handler by checking to see if the element or element's parent is a filtered item.
+
+[See test: Unclickable filtered](../tests/unclickable-filtered.html)
+
+{% highlight javascript %}
+
+$('.item a').click(function(){
+  var $this = $(this);
+  // back out if hidden item
+  if ( $this.parents('.isotope-item').hasClass('isotope-hidden') ) {
+    return;
+  }
+  // otherwise, continue to do stuff...
+  console.log('item was clicked');
+});
+
+{% endhighlight %}
