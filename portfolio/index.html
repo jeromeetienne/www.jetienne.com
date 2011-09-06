@@ -13,30 +13,30 @@
 </yourhead>
 <body>
 	<style>
-		#title {
+		.navigation {
+		}
+		.navigation .title {
+			float		: left;
 			text-align	: left;
 			font-size	: 200%;
 			margin-bottom	: 20px;
 		}
-		#title a {
+		.navigation .title a {
 			color	: white;
 		}
-		#title a:hover {
+		.navigation .title a:hover {
 			text-decoration	: underline;
 		}
-		#title .head {
+		.navigation .title .head {
 			font-size	: 50px;
 		}
-		#title .separator {
+		.navigation .title .separator {
 			color	: #aaa;
 		}
 	</style>
 	
 	<style>
-		.navigation {
-			float		: left;
-		}
-		ul#filters {
+		.navigation ul#filters {
 			font-size	: 150%;
 			font-weight	: bolder;
 			text-align	: center;
@@ -45,22 +45,23 @@
 			margin		: 0 auto;
 		}
 		
-		ul#filters li {
+		.navigation ul#filters li {
+			display		: inline-block;
 			margin		: 10px;
-			padding		: 8px;
+			padding		: 15px;
 			border		: 2px solid #999;
 			border-radius	: 15px;
 		}
-		ul#filters li.active {
+		.navigation ul#filters li.active {
 			background-color	: #AAA;
 		}
-		ul#filters li:hover {
+		.navigation ul#filters li:hover {
 			background-color: #ccc;
 			cursor		: pointer;
 		}
 	</style>
 	<div class="navigation">
-		<div id="title">
+		<div class="title">
 			<div class="head">Portfolio</div>
 			<br/>
 			<span class="separator">of</span>
@@ -73,7 +74,7 @@
 			<li data-filter=".tag_jquery">jQuery</li>
 			<li data-filter=".tag_realtime">Realtime</li>
 			<li data-filter=".tag_micro">MicroLib</li>
-			<li data-filter="*">show all</li>
+			<li data-filter="*">Show All</li>
 		</ul>
 	</div>
 	<script>
@@ -97,7 +98,6 @@
 	}
 	#container	{
 		width		: 100%;
-		width		: 800px;
 		font-size	: 12px;
 		line-height	: 1.6em;
 		border		: 0px;
