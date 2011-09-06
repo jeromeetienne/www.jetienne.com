@@ -10,7 +10,10 @@
 
 	<link rel="stylesheet" href="css/style.css" type="text/css" media="screen" />
 	<script src="js/script.js" type="text/javascript"></script>
-</yourhead>
+	
+	<script src="https://raw.github.com/cowboy/jquery-bbq/master/jquery.ba-bbq.js" type="text/javascript"></script>
+	
+</head>
 <body>
 	<style>
 		.navigation {
@@ -61,6 +64,9 @@
 			background-color: #ccc;
 			cursor		: pointer;
 		}
+		.navigation ul#filters li a {
+			color	: inherit;
+		}
 	</style>
 	<div class="navigation">
 		<div class="title">
@@ -81,17 +87,40 @@
 	</div>
 	<script>
 	jQuery(function(){
+		// handle click on navigation menu
 		jQuery('#filters li').click(function(){
-			// get selector
+			// get selector from dom element
 			var selector	= jQuery(this).attr('data-filter');
-			// pass it to isotope
-			jQuery('#container').isotope({ filter: selector });
-			// mark current filter as active
+			// ask jQuery.bbq to save it in history
+			jQuery.bbq.pushState({filter	: selector});
+			// mark current menu button as active
 			jQuery('#filters li').removeClass('active');
 			jQuery(this).addClass('active');
+			// prevent default behavior
 			return false;
 		});
-	})
+		
+		// if hashchange, get filter from hash and push it in jQuery.isotope
+		jQuery(window).bind( 'hashchange', function( event ){
+			// get options object from hash
+			var hashOptions = jQuery.deparam.fragment();
+			// apply options from hash
+			jQuery('#container').isotope( hashOptions );
+		}).trigger('hashchange');	// trigger 'hashchange' on boot to init 
+
+		// init the navigation menu buttons based on hash filter
+		(function(){
+			// get options object from hash
+			var hashOptions = jQuery.deparam.fragment();
+			if( ! hashOptions.filter )	return
+			var filter	= hashOptions.filter;
+			// mark current filter as active
+			jQuery('#filters li').removeClass('active');
+			jQuery('#filters li[data-filter="'+filter+'"]').addClass('active');
+		}());
+		
+
+	});
 	</script>
 
 	<style>
