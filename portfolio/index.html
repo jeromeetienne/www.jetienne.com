@@ -2,236 +2,310 @@
 <head>
 	<title>Jerome Etienne - Portfolio</title>
 	<link rel="stylesheet" href="css/reset.css" type="text/css" media="screen" />
+
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js" type="text/javascript"></script>
+
+	<script	src="isotope/jquery.isotope.js" type="text/javascript"></script>
+	<link	href="isotope/css/style.css" rel="stylesheet" type="text/css" media="screen" />
+
 	<link rel="stylesheet" href="css/style.css" type="text/css" media="screen" />
-	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js" type="text/javascript"></script>
 	<script src="js/script.js" type="text/javascript"></script>
 </yourhead>
 <body>
-<!--
-
-* heavily http://ozh.org/
-* to generate the screenshot of the project homepage
-  * bin/phantomjs examples/rasterize.js http://jeromeetienne.github.com/jquery-mobile-960/ /tmp/bla.png
-  * convert /tmp/bla.png -crop 960x720+0+0  crop_bla.png
-  * cropped at 960x720
-  * may be reduce to 320x240
-* curl http://github.com/api/v2/json/repos/show/jeromeetienne  2>/dev/null | jsonpretty | less
-
--->
-<div id="container">
-
-	<div class="slidebox">
-		<h1 class="slide">Jerome Etienne's Portfolio</h1>
-		<h2 class="content">Here are some projects i did.</h2>
-	</div>
-	<div class="slidebox">
-		<div style="background:url(image/pacmaze.png); background-size: 100%" class="slide"></div>
-		<div class="content">
-			<h3>Pacmaze</h3>
-			<p>
-				It is a pacman in WebGL. You are a pacman trapped in a maze. You
-				need to eat all the pills to get out, and avoid the ghosts in the
-				process. Well... you known pacman.
-			</p>
-			<p class='visit'>Visit <a href='http://notes.jetienne.com/2011/04/13/pacmaze-v1-release.html'>pacmaze</a></p>			
-		</div>
-	</div>
-	<div class="slidebox">
-		<h1 class="slide">Gowiththeflow.js - Async flow control micro library</h1>
-		<div class="content">
-			<h3><a href='https://github.com/jeromeetienne/gowiththeflow.js'>Gowiththeflow.js</a></h3>
-			<p>
-				Gowiththeflow.js is a javascript asynchronous flow-control micro library.
-				only 30lines. works in node.js and browser. It allow to control how
-				your async code is executed, sequentially or in parallel.
-			</p>
-			<p class='visit'>Visit <a href='https://github.com/jeromeetienne/gowiththeflow.js'>github</a></p>			
-		</div>
-	</div>
-	<div class="slidebox">
-		<h1 class="slide">nmod - node_modules installer</h1>
-		<div class="content">
-			<h3><a href='https://github.com/jeromeetienne/nmod'>nmod</a></h3>
-			<p>
-				nmod is a <a href="http://nodejs.org/docs/v0.4.1/api/modules.html#loading_from_node_modules_Folders">node_modules</a>
-				packages installer.
-				node_modules is a  new feature in node.js 0.4.
-				It provides a simple and regular way to install packages
-			</p>
-			<p class='visit'>Visit <a href='https://github.com/jeromeetienne/nmod'>nmod</a></p>			
-		</div>
-	</div>
-	<div class="slidebox">
-		<div style="background:url(image/jquery-mobile-960.png); background-size: 100%" class="slide"></div>
-		<div class="content">
-			<h3><a href='http://jeromeetienne.github.com/jquery-mobile-960'>jQuery Mobile 960</a></h3>
-			<p>
-				jquery-mobile-960 is a port of 960 grid to jquery mobile. It merge
-				the flexibility of 960.gs, and the ease of jquery mobile. It aims
-				to bring more flexibility to jquery-mobile layout and thus make
-				it easier to use on tablets.
-			</p>
-		</div>
-	</div>
-	<div class="slidebox">
-		<h1 class="slide">jQuery QRcode</h1>
-		<div class="content">
-			<h3><a href='http://jeromeetienne.github.com/jquery-qrcode'>jQuery QRcode</a></h3>
-			<p>
-				It is a jquery plugin for a pure browser qrcode generation to
-				easily add qrcode to your webpages.
-				It is standalone, less than 4k after minify+gzip, no image download,
-				no external services.
-				<p class='visit'>Visit <a href='http://jeromeetienne.github.com/jquery-qrcode'>homepage</a></p>			
-			</p>
-		</div>
-	</div>
-	<div class="slidebox">
-		<div style="background:url(image/easywebsocket.png); background-size: 100%" class="slide"></div>
-		<div class="content">
-			<h3><a href='http://easywebsocket.org'>Easy WebSocket</a></h3>
-			<p>
-				It's a WebSocket client to broadcast messages to webpages.
-				It's simple websockets broadcasting. It's perfect for a quick
-				prototype.. getting it going quick. 90% this is all you need if
-				you're doing websocket something.
-			</p>
-		</div>
-	</div>
-	<div class="slidebox">
-		<h1 class="slide">Physics.js</h1>
-		<div class="content">
-			<h3><a href='https://github.com/jeromeetienne/physics.js'>physics.js</a></h3>
-			<p>
-				physics.js is a javascript physics engine. It has chained
-				API (ala jQuery) and a plugin system.
-				physics.js is my attempts to make box2d easier to use.
-			</p>
-			<p class='visit'>Visit <a href='http://jeromeetienne.github.com/physics.js'>physics.js</a></p>			
-		</div>
-	</div>
-	<div class="slidebox">
-		<div style="background:url(image/dropinrequirejs.png); background-size: 100%" class="slide"></div>
-		<div class="content">
-			<h3><a href='https://github.com/jeromeetienne/dropinrequire.js'>Drop-In Require.js</a></h3>
-			<p>
-				It's a drop-in replacement for common js module in a browser. No server
-				to run, No preprocessing of javascript files. Using
-				<a href="http://nodejs.org">node.js</a>
-				and is willing to share code with a browser? It's for you!
-			</p>
-			<p class='visit'>Visit <a href='http://jeromeetienne.github.com/dropinrequire.js'>dropinrequire.js</a></p>			
-		</div>
-	</div>
-	<div class="slidebox">
-		<h1 class="slide">Microevent.js - Events for any javascript object</h1>
-		<div class="content">
-			<h3>microevent.js</h3>
-			<p>
-				MicroEvent.js is a event emitter library which provides the observer pattern to javascript objects. It works on node.js and browser. It is a single .js file containing a 20 lines class.
-			</p>
-			<p class='visit'>Visit <a href='http://notes.jetienne.com/2011/03/22/microeventjs.html'>microevent.js</a></p>			
-		</div>
-	</div>	
-	<div class="slidebox">
-		<h1 class="slide">MicroCache.js - A micro library for caching</h1>
-		<div class="content">
-			<h3><a href='https://github.com/jeromeetienne/microcache.js'>MicroCache.js</a></h3>
-			<p>
-				MicroCache.js is a javascript micro library to handle in-memory cache.
-				It works in works in node+browser.
-			</p>
-			<p class='visit'>Visit <a href='https://github.com/jeromeetienne/microcache.js'>MicroCache.js</a></p>			
-		</div>
-	</div>
-	<div class="slidebox">
-		<div style="background:url(image/acewidget.png); background-size: 100%" class="slide"></div>
-		<div class="content">
-			<h3><a href='http://jeromeetienne.github.com/acewidget'>AceWidget</a></h3>
-			<p>
-				a widget which make ace trivial to embed in your pages. It avoids the
-				global namespace collisions.
-			</p>
-			<p class='visit'>Visit <a href='http://jeromeetienne.github.com/acewidget/demo.html'>demo</a></p>			
-		</div>
-	</div>
-
-	<div class="slidebox">
-		<div style="background:url(image/webpeer.png); background-size: 100%" class="slide"></div>
-		<div class="content">
-			<h3><a href='http://webpeer.it'>WebPeer</a></h3>
-			<p>
-				Webpeer is free and opensource. It seamlessly unifies web and
-				p2p to leverage the best both worlds in a breeze. It is
-				efficient , robust and transparent . 
-			</p>
-			<p class='visit'>Visit <a href='http://webpeer.it'>webpeer</a></p>			
-		</div>
-	</div>
-	<div class="slidebox">
-		<h1 class="slide">Jotnode</h1>
-		<div class="content">
-			<h3><a href='http://jotnode.org'>Jotnode</a></h3>
-			<p>
-				IPv4 reloaded for the mass
-			</p>
-			<p class='visit'>Visit <a href='http://jotnode.org'>jotnode</a></p>			
-		</div>
-	</div>
-	<div class="slidebox">
-		<h1 class="slide">Streamie - full realtime twitter webapp</h1>
-		<div class="content">
-			<h3><a href='http://streamie.org'>Streamie</a></h3>
-			<p>
-				Streamie is a full realtime Twitter client that runs in your web browser.
-				I <span class="highlight">contributed patches</span>, such
-				as automatic translation.
-			</p>
-			<p class='visit'>Visit <a href='http://streamie.org'>streamie.org</a></p>			
-		</div>
-	</div>
-	<div class="slidebox">
-		<h1 class="slide">dotjs - like greasemonkey but gittable</h1>
-		<div class="content">
-			<h3><a href='https://github.com/jeromeetienne/dotjs'>dotjs</a></h3>
-			<p>
-				dotjs is a Google Chrome extension that executes JavaScript files in ~/.js based on their filename.
-				I ported it to <span class="highlight">node.js</span> and made it
-				<span class="highlight">compatible with greasemonkey</span>.
-			</p>
-			<p class='visit'>Visit <a href='https://github.com/jeromeetienne/dotjs'>dotjs</a></p>			
-		</div>
-	</div>
-	<div class="slidebox">
-		<h1 class="slide">Contact</h1>
-		<div class="content">
-			<h3>Contact</h3>
-			<p>
-				You can follow me on <span class="highlight"><a href='http://twitter.com/jerome_etienne'>twitter</a></span>
-				, look at my code on <span class="highlight"><a href='http://github.com/jeromeetienne'>github</a></span>
-				, or email me <span class="highlight"><a href='mailto:jerome.etienne@gmail.com'>here</a></span>
-			</p>
-			<p class='visit'>Visit <a href='http://jetienne.com'>homepage</a></p>			
-		</div>
-	</div>
+	<style>
+		#title {
+			text-align	: left;
+			font-size	: 200%;
+			margin-bottom	: 20px;
+		}
+		#title a {
+			color	: white;
+		}
+		#title a:hover {
+			text-decoration	: underline;
+		}
+		#title .head {
+			font-size	: 50px;
+		}
+		#title .separator {
+			color	: #aaa;
+		}
+	</style>
 	
-	<!-- follow me on twitter --> 
-	<a href="http://www.twitter.com/jerome_etienne"><img style="position: absolute; top: 10px; right: 10px; border: 0;" src="http://twitter-badges.s3.amazonaws.com/follow_me-c.png" alt="Follow jerome_etienne on Twitter"/></a> 
-	<!-- github ribbon --> 
-	<a href="https://github.com/jeromeetienne"><img style="position: absolute; top: 0; left: 0; border: 0;" src="https://assets0.github.com/img/ce742187c818c67d98af16f96ed21c00160c234a?repo=&url=http%3A%2F%2Fs3.amazonaws.com%2Fgithub%2Fribbons%2Fforkme_left_gray_6d6d6d.png&path=" alt="Fork me on GitHub"></a> 
-	<!-- google analytic -->
-	<script type="text/javascript">	
-		var _gaq = _gaq || [];
-		_gaq.push(['_setAccount', 'UA-4037844-1']);
-		_gaq.push(['_trackPageview']);
+	<style>
+		.navigation {
+			float		: left;
+		}
+		ul#filters {
+			font-size	: 150%;
+			font-weight	: bolder;
+			text-align	: center;
+			list-style	: none;
+			padding		: 0;
+			margin		: 0 auto;
+		}
 		
-		(function() {
-		  var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-		  ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-		  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-		})();
+		ul#filters li {
+			margin		: 10px;
+			padding		: 8px;
+			border		: 2px solid #999;
+			border-radius	: 15px;
+		}
+		ul#filters li.active {
+			background-color	: #AAA;
+		}
+		ul#filters li:hover {
+			background-color: #ccc;
+			cursor		: pointer;
+		}
+	</style>
+	<div class="navigation">
+		<div id="title">
+			<div class="head">Portfolio</div>
+			<br/>
+			<span class="separator">of</span>
+			<span class="name"><a href="..">Jerome Etienne</a></span>
+		</div>
+		<ul id="filters">
+			<li data-filter=".tag_node">Node</li>
+			<li data-filter=".tag_browser">Browser</li>
+			<li data-filter=".tag_game">Game</li>
+			<li data-filter=".tag_jquery">jQuery</li>
+			<li data-filter=".tag_realtime">Realtime</li>
+			<li data-filter=".tag_micro">MicroLib</li>
+			<li data-filter="*">show all</li>
+		</ul>
+	</div>
+	<script>
+	jQuery(function(){
+		jQuery('#filters li').click(function(){
+			// get selector
+			var selector	= jQuery(this).attr('data-filter');
+			// pass it to isotope
+			jQuery('#container').isotope({ filter: selector });
+			// mark current filter as active
+			jQuery('#filters li').removeClass('active');
+			jQuery(this).addClass('active');
+			return false;
+		});
+	})
 	</script>
-		
-</div>
+
+	<style>
+	html {
+		overflow-y	: scroll;
+	}
+	#container	{
+		width		: 100%;
+		width		: 800px;
+		font-size	: 12px;
+		line-height	: 1.6em;
+		border		: 0px;
+	}
+	</style>
+	<div id="container">
+		<div class="slidebox">
+			<h1 class="slide">Jerome Etienne's Portfolio</h1>
+			<h2 class="content">Here are some projects i did.</h2>
+		</div>
+		<div class="slidebox tag_game tag_node tag_browser tag_webgl">
+			<div style="background:url(image/pacmaze.png); background-size: 100%" class="slide"></div>
+			<div class="content">
+				<h3>Pacmaze</h3>
+				<p>
+					It is a pacman in WebGL. You are a pacman trapped in a maze. You
+					need to eat all the pills to get out, and avoid the ghosts in the
+					process. Well... you known pacman.
+				</p>
+				<p class='visit'>Visit <a href='http://notes.jetienne.com/2011/04/13/pacmaze-v1-release.html'>pacmaze</a></p>			
+			</div>
+		</div>
+		<div class="slidebox tag_micro tag_node tag_browser">
+			<h1 class="slide">Gowiththeflow.js - Async flow control micro library</h1>
+			<div class="content">
+				<h3><a href='https://github.com/jeromeetienne/gowiththeflow.js'>Gowiththeflow.js</a></h3>
+				<p>
+					Gowiththeflow.js is a javascript asynchronous flow-control micro library.
+					only 30lines. works in node.js and browser. It allow to control how
+					your async code is executed, sequentially or in parallel.
+				</p>
+				<p class='visit'>Visit <a href='https://github.com/jeromeetienne/gowiththeflow.js'>github</a></p>			
+			</div>
+		</div>
+		<div class="slidebox tag_node">
+			<h1 class="slide">nmod - node_modules installer</h1>
+			<div class="content">
+				<h3><a href='https://github.com/jeromeetienne/nmod'>nmod</a></h3>
+				<p>
+					nmod is a <a href="http://nodejs.org/docs/v0.4.1/api/modules.html#loading_from_node_modules_Folders">node_modules</a>
+					packages installer.
+					node_modules is a  new feature in node.js 0.4.
+					It provides a simple and regular way to install packages
+				</p>
+				<p class='visit'>Visit <a href='https://github.com/jeromeetienne/nmod'>nmod</a></p>			
+			</div>
+		</div>
+		<div class="slidebox tag_jquery">
+			<div style="background:url(image/jquery-mobile-960.png); background-size: 100%" class="slide"></div>
+			<div class="content">
+				<h3><a href='http://jeromeetienne.github.com/jquery-mobile-960'>jQuery Mobile 960</a></h3>
+				<p>
+					jquery-mobile-960 is a port of 960 grid to jquery mobile. It merge
+					the flexibility of 960.gs, and the ease of jquery mobile. It aims
+					to bring more flexibility to jquery-mobile layout and thus make
+					it easier to use on tablets.
+				</p>
+			</div>
+		</div>
+		<div class="slidebox tag_jquery">
+			<h1 class="slide">jQuery QRcode</h1>
+			<div class="content">
+				<h3><a href='http://jeromeetienne.github.com/jquery-qrcode'>jQuery QRcode</a></h3>
+				<p>
+					It is a jquery plugin for a pure browser qrcode generation to
+					easily add qrcode to your webpages.
+					It is standalone, less than 4k after minify+gzip, no image download,
+					no external services.
+					<p class='visit'>Visit <a href='http://jeromeetienne.github.com/jquery-qrcode'>homepage</a></p>			
+				</p>
+			</div>
+		</div>
+		<div class="slidebox  tag_realtime">
+			<div style="background:url(image/easywebsocket.png); background-size: 100%" class="slide"></div>
+			<div class="content">
+				<h3><a href='http://easywebsocket.org'>Easy WebSocket</a></h3>
+				<p>
+					It's a WebSocket client to broadcast messages to webpages.
+					It's simple websockets broadcasting. It's perfect for a quick
+					prototype.. getting it going quick. 90% this is all you need if
+					you're doing websocket something.
+				</p>
+			</div>
+		</div>
+		<div class="slidebox tag_game">
+			<h1 class="slide">Physics.js</h1>
+			<div class="content">
+				<h3><a href='https://github.com/jeromeetienne/physics.js'>physics.js</a></h3>
+				<p>
+					physics.js is a javascript physics engine. It has chained
+					API (ala jQuery) and a plugin system.
+					physics.js is my attempts to make box2d easier to use.
+				</p>
+				<p class='visit'>Visit <a href='http://jeromeetienne.github.com/physics.js'>physics.js</a></p>			
+			</div>
+		</div>
+		<div class="slidebox tag_micro tag_node tag_browser">
+			<div style="background:url(image/dropinrequirejs.png); background-size: 100%" class="slide"></div>
+			<div class="content">
+				<h3><a href='https://github.com/jeromeetienne/dropinrequire.js'>Drop-In Require.js</a></h3>
+				<p>
+					It's a drop-in replacement for common js module in a browser. No server
+					to run, No preprocessing of javascript files. Using
+					<a href="http://nodejs.org">node.js</a>
+					and is willing to share code with a browser? It's for you!
+				</p>
+				<p class='visit'>Visit <a href='http://jeromeetienne.github.com/dropinrequire.js'>dropinrequire.js</a></p>			
+			</div>
+		</div>
+		<div class="slidebox tag_micro tag_node tag_browser">
+			<h1 class="slide">Microevent.js - Events for any javascript object</h1>
+			<div class="content">
+				<h3>microevent.js</h3>
+				<p>
+					MicroEvent.js is a event emitter library which provides the observer pattern to javascript objects. It works on node.js and browser. It is a single .js file containing a 20 lines class.
+				</p>
+				<p class='visit'>Visit <a href='http://notes.jetienne.com/2011/03/22/microeventjs.html'>microevent.js</a></p>			
+			</div>
+		</div>	
+		<div class="slidebox tag_micro tag_node tag_browser">
+			<h1 class="slide">MicroCache.js - A micro library for caching</h1>
+			<div class="content">
+				<h3><a href='https://github.com/jeromeetienne/microcache.js'>MicroCache.js</a></h3>
+				<p>
+					MicroCache.js is a javascript micro library to handle in-memory cache.
+					It works in works in node+browser.
+				</p>
+				<p class='visit'>Visit <a href='https://github.com/jeromeetienne/microcache.js'>MicroCache.js</a></p>			
+			</div>
+		</div>
+		<div class="slidebox">
+			<div style="background:url(image/acewidget.png); background-size: 100%" class="slide"></div>
+			<div class="content">
+				<h3><a href='http://jeromeetienne.github.com/acewidget'>AceWidget</a></h3>
+				<p>
+					a widget which make ace trivial to embed in your pages. It avoids the
+					global namespace collisions.
+				</p>
+				<p class='visit'>Visit <a href='http://jeromeetienne.github.com/acewidget/demo.html'>demo</a></p>			
+			</div>
+		</div>
+	
+		<div class="slidebox">
+			<div style="background:url(image/webpeer.png); background-size: 100%" class="slide"></div>
+			<div class="content">
+				<h3><a href='http://webpeer.it'>WebPeer</a></h3>
+				<p>
+					Webpeer is free and opensource. It seamlessly unifies web and
+					p2p to leverage the best both worlds in a breeze. It is
+					efficient , robust and transparent . 
+				</p>
+				<p class='visit'>Visit <a href='http://webpeer.it'>webpeer</a></p>			
+			</div>
+		</div>
+		<div class="slidebox">
+			<h1 class="slide">Jotnode</h1>
+			<div class="content">
+				<h3><a href='http://jotnode.org'>Jotnode</a></h3>
+				<p>
+					IPv4 reloaded for the mass
+				</p>
+				<p class='visit'>Visit <a href='http://jotnode.org'>jotnode</a></p>			
+			</div>
+		</div>
+		<div class="slidebox">
+			<h1 class="slide">Streamie - full realtime twitter webapp</h1>
+			<div class="content">
+				<h3><a href='http://streamie.org'>Streamie</a></h3>
+				<p>
+					Streamie is a full realtime Twitter client that runs in your web browser.
+					I <span class="highlight">contributed patches</span>, such
+					as automatic translation.
+				</p>
+				<p class='visit'>Visit <a href='http://streamie.org'>streamie.org</a></p>			
+			</div>
+		</div>
+		<div class="slidebox">
+			<h1 class="slide">dotjs - like greasemonkey but gittable</h1>
+			<div class="content">
+				<h3><a href='https://github.com/jeromeetienne/dotjs'>dotjs</a></h3>
+				<p>
+					dotjs is a Google Chrome extension that executes JavaScript files in ~/.js based on their filename.
+					I ported it to <span class="highlight">node.js</span> and made it
+					<span class="highlight">compatible with greasemonkey</span>.
+				</p>
+				<p class='visit'>Visit <a href='https://github.com/jeromeetienne/dotjs'>dotjs</a></p>			
+			</div>
+		</div>
+		<div class="slidebox">
+			<h1 class="slide">Contact</h1>
+			<div class="content">
+				<h3>Contact</h3>
+				<p>
+					You can follow me on <span class="highlight"><a href='http://twitter.com/jerome_etienne'>twitter</a></span>
+					, look at my code on <span class="highlight"><a href='http://github.com/jeromeetienne'>github</a></span>
+					, or email me <span class="highlight"><a href='mailto:jerome.etienne@gmail.com'>here</a></span>
+				</p>
+				<p class='visit'>Visit <a href='http://jetienne.com'>homepage</a></p>			
+			</div>
+		</div>
+	</div>
+	<script>
+	jQuery(function(){
+		jQuery('#container').isotope({
+			itemSelector	: '.slidebox',
+			layoutMode	: 'fitRows'
+		});			
+	})
+	</script>
 </body>
 </html>
