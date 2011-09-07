@@ -92,7 +92,7 @@
 			// get selector from dom element
 			var selector	= jQuery(this).attr('data-filter');
 			// ask jQuery.bbq to save it in history
-			jQuery.bbq.pushState({filter	: selector});
+			jQuery.bbq.pushState({filter : selector});
 			// mark current menu button as active
 			jQuery('#filters li').removeClass('active');
 			jQuery(this).addClass('active');
