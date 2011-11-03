@@ -11,15 +11,13 @@ monitor: build
 	(while inotifywait -r -e modify,attrib,create . ; do make build; done)
 
 server:
-	lighttpd -f lighttpd.conf  -D
+	python -m SimpleHTTPServer
 
-deploy: buildCss build
-	(cd $(DESTDIR) && git add . && git commit -a -m 'new build' && git push origin gh-pages)
+deploy: buildCss
+	# assume there is something to commit
+	# use "git diff --exit-code HEAD" to know if there is something to commit
+	# so two lines: one if no commit, one if something to commit
+	git commit -a -m "New deploy" && git push -f origin HEAD:gh-pages && git reset HEAD~
 
 buildCss:
 	(cd portfolio/css && make lessc_obj)
-
-build:
-	(cd $(DESTDIR) && git reset --hard origin/gh-pages)
-	cp -a * $(DESTDIR)
-	
