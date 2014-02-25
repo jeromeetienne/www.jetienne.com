@@ -30,10 +30,12 @@
 	text-shadow	: 0 0 0.2em #fbc, 0 0 0.2em #fbc, 0 0 0.2em #fbc;
 }
 .osdFont {
-	opacity: 0
+	opacity: 0;
+	pointer-events: none;
 }
 .osdFont.visible {
-	opacity: 1
+	opacity: 1;
+	pointer-events: all;
 }
 .clickableOsd:hover {
 	background-color: rgba(255,0,0,0.5);
@@ -44,6 +46,10 @@
 	font-family: FontAwesome;
 	font-size: 500%	
 }
+.osdIcon:before {
+	line-height: 1.1;
+	padding: 10px;
+}
 </style>
 
 <style>
@@ -53,16 +59,16 @@
 	right: 20px;
 }
 #exitOsd:before {
-	content: "\f0e2"
+	content: "\f0e2";
 }
 
-#menuOsd:before {
-	content: "\f039"
+#homeOsd:before {
+	content: "\f015";
 }
 </style>
 
 <div id='tvSetOsd'>
-	<div id="menuOsd" class='osdFont clickableOsd osdIcon' title='Goto Menu'></div>
+	<div id="homeOsd" class='osdFont clickableOsd osdIcon' title='Goto Menu'></div>
 	<div id="exitOsd" class='osdFont clickableOsd osdIcon' title='Stop Watching'></div>
 </div>
 	
@@ -377,7 +383,7 @@ if( true ){
 		if( state === 'walking' && distanceTo < 4 )	gotoWatching()
 	})
 
-	document.querySelector('#menuOsd').addEventListener('click', function(){
+	document.querySelector('#homeOsd').addEventListener('click', function(){
 		domElement.src	= rootUrl;
 	});
 
@@ -397,7 +403,7 @@ if( true ){
 		camera.position.add(new THREE.Vector3(0,0.31,0.6).multiply(tvSet.object3d.scale))
 		camera.lookAt(new THREE.Vector3(0,camera.position.y,1))
 		
-		document.querySelector('#menuOsd').classList.toggle('visible')
+		document.querySelector('#homeOsd').classList.toggle('visible')
 		document.querySelector('#exitOsd').classList.toggle('visible')
 	}
 
@@ -412,7 +418,7 @@ if( true ){
 			
 		// player.character.root.lookAt(tvSet.object3d.position)
 
-		document.querySelector('#menuOsd').classList.toggle('visible')
+		document.querySelector('#homeOsd').classList.toggle('visible')
 		document.querySelector('#exitOsd').classList.toggle('visible')
 	}
 
@@ -483,7 +489,7 @@ if( true ){
 		var material	= new THREE.MeshPhongMaterial({
 			color	: 'cyan'
 		})
-		var mesh	= new THREEx.Text('Watch')
+		var mesh	= new THREEx.Text('Enter')
 		mesh.material	= material
 		mesh.scale.multiplyScalar(1/20)
 		mesh.position.x	= +0.125
