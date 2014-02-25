@@ -6,7 +6,141 @@
 
 
 <body style='margin: 0px; background-color: #bbbbbb; overflow: hidden;'>
-	
+
+<style>
+body {
+	background	: hotpink;
+}
+.buttonPrevNext {
+	background	: red;
+}
+.buttonPrevNext:hover {
+	background	: blue;
+	cursor		: pointer;
+}
+#infoHeader {
+	position: absolute;
+	top: 0px;
+	width: 100%;
+	text-align: center;
+
+	padding-top: 0.5em;
+
+	z-index: 2;
+	font-size: 150%;	
+	color: #BDBDBD;
+
+}
+#infoHeader .title {
+	font-size: 150%;
+	background: rgba(0,0,0,0.5);
+
+	padding: 10px;
+	padding-top: 30px;
+
+	border-radius: 10px;
+
+	border-color: black;
+	border-style: solid;
+	border-width: 2px;
+}
+#infoFooter {
+	position: absolute;
+	bottom: 1em;
+	width: 100%;
+	text-align: center;
+
+	padding-top: 0.5em;
+
+	z-index: 2;
+	font-size: 150%;	
+	color: #BDBDBD;
+
+}
+#infoFooter .title {
+	background: rgba(0,0,0,0.5);
+
+	padding: 10px;
+
+	border-radius: 10px;
+	border-color: black;
+	border-style: solid;
+	border-width: 2px;
+}
+#infoFooter .legendButton {
+	font-weight	: bold;
+	color		: firebrick;
+}
+#infoButton {
+	position	: absolute;
+	top		: 10px;
+	left		: 10px;
+	z-index		: 2;
+
+	font-style	: italic;
+	font-size	: 180%;
+	color		: white;
+
+	background	: rgba(0,0,0,0.5);
+
+	padding		: 15px;
+	padding-top	: 5px;
+	padding-bottom	: 5px;
+
+
+	border-radius	: 1000px;
+	border-color	: #BDBDBD;
+	border-style	: solid;
+	border-width	: 2px;	
+}
+#infoButton:hover {
+	cursor: pointer;
+}
+#infoPopup {
+	position	: absolute;
+	top		: 80px;
+	left		: 10px;
+	z-index		: 2;
+
+	font-size	: 150%;
+	width: 30%;
+
+	color		: #BDBDBD;
+
+	background	: rgba(0,0,0,0.5);
+
+	padding		: 15px;
+	padding-top	: 5px;
+	padding-bottom	: 5px;
+
+
+	border-radius	: 10px;
+	border-color	: black;
+	border-style	: solid;
+	border-width	: 2px;	
+}
+#infoPopup a {
+	color		: #8888ff;	
+}
+</style><div id="infoHeader">
+	<span class='title'>Virtual Game Console of Jerome Etienne</span>
+</div><div id="infoFooter">
+	<span class='title'>
+		Use
+		<span class='legendButton'>Arrows</span> 
+		to move and 
+		<span class='legendButton'>Shift</span>
+		to strafe.
+	</span>
+</div><div id='infoButton'>
+i
+</div><div id='infoPopup' style='display: none;'>
+In this tvset, you can look at all the mini games i made.
+
+If you go close to the tvset, you will enter in watch mode. 
+So the camera will be exactly in front of the tv and you can play as you wish.
+</div>
+
 <style>
 @font-face {	/* for mute button which is part of awesome font */
 	font-family: 'FontAwesome';
@@ -16,7 +150,12 @@
 	font-style: normal;
 }
 </style>
-
+<script>
+	document.querySelector('#infoButton').addEventListener('click', function(event){
+		var element	= document.querySelector('#infoPopup');
+		element.style.display	= element.style.display === 'none' ? 'block' : 'none';
+	});
+</script>
 <style>
 .osdFont {
 	font-family	: arial, verdana, sans-serif;
@@ -61,15 +200,14 @@
 #exitOsd:before {
 	content: "\f0e2";
 }
-
 #homeOsd:before {
 	content: "\f015";
 }
 </style>
 
 <div id='tvSetOsd'>
-	<div id="homeOsd" class='osdFont clickableOsd osdIcon' title='Goto Menu'></div>
-	<div id="exitOsd" class='osdFont clickableOsd osdIcon' title='Stop Watching'></div>
+	<div id="homeOsd" class='osdFont clickableOsd osdIcon' title='Home'></div>
+	<div id="exitOsd" class='osdFont clickableOsd osdIcon' title='Exit'></div>
 </div>
 	
 <script>
@@ -346,7 +484,7 @@ if( true ){
 	//		create a Plane for THREEx.HtmlMixer				//
 	//////////////////////////////////////////////////////////////////////////////////
 
-	var rootUrl	= 'bower_components/threex.tvset/examples/menu.html'
+	var rootUrl	= 'menu.html'
 
 	// create the iframe element
 	var domElement	= document.createElement('iframe')
