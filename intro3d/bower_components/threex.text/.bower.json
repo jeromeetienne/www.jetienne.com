@@ -1,0 +1,14 @@
+{
+  "name": "threex.text",
+  "homepage": "https://github.com/jeromeetienne/threex.text",
+  "_release": "e6b29268fd",
+  "_resolution": {
+    "type": "branch",
+    "branch": "master",
+    "commit": "e6b29268fd6d8f5d570e967c9a090d0ec8750cfd"
+  },
+  "_source": "git://github.com/jeromeetienne/threex.text.git",
+  "_target": "*",
+  "_originalSource": "threex.text",
+  "_direct": true
+}

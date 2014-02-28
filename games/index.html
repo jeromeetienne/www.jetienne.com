@@ -44,30 +44,7 @@ body {
 	border-style: solid;
 	border-width: 2px;
 }
-#infoFooter {
-	position: absolute;
-	bottom: 1em;
-	width: 100%;
-	text-align: center;
-
-	padding-top: 0.5em;
-
-	z-index: 2;
-	font-size: 150%;	
-	color: #BDBDBD;
-
-}
-#infoFooter .title {
-	background: rgba(0,0,0,0.5);
-
-	padding: 10px;
-
-	border-radius: 10px;
-	border-color: black;
-	border-style: solid;
-	border-width: 2px;
-}
-#infoFooter .legendButton {
+#infoPopup .legendButton {
 	font-weight	: bold;
 	color		: firebrick;
 }
@@ -124,22 +101,33 @@ body {
 }
 </style><div id="infoHeader">
 	<span class='title'>Virtual Game Console of Jerome Etienne</span>
-</div><div id="infoFooter">
-	<span class='title'>
-		Use
-		<span class='legendButton'>Arrows</span> 
-		to move and 
-		<span class='legendButton'>Shift</span>
-		to strafe.
-	</span>
 </div><div id='infoButton'>
 i
 </div><div id='infoPopup' style='display: none;'>
 In this tvset, you can look at all the mini games i made.
 
+<br/>
+<br/>
+
+To move 
+the character, use
+<span class='legendButton'>Arrows</span> 
+and 
+<span class='legendButton'>Shift</span>
+to strafe.
+
+<br/>
+<br/>
+
 If you go close to the tvset, you will enter in watch mode. 
 So the camera will be exactly in front of the tv and you can play as you wish.
 </div>
+<script>
+	document.querySelector('#infoButton').addEventListener('click', function(event){
+		var element	= document.querySelector('#infoPopup');
+		element.style.display	= element.style.display === 'none' ? 'block' : 'none';
+	});
+</script>
 
 <style>
 @font-face {	/* for mute button which is part of awesome font */
@@ -150,12 +138,6 @@ So the camera will be exactly in front of the tv and you can play as you wish.
 	font-style: normal;
 }
 </style>
-<script>
-	document.querySelector('#infoButton').addEventListener('click', function(event){
-		var element	= document.querySelector('#infoPopup');
-		element.style.display	= element.style.display === 'none' ? 'block' : 'none';
-	});
-</script>
 <style>
 .osdFont {
 	font-family	: arial, verdana, sans-serif;
