@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<body>
+<img class='blink' src='images/star.png'></img>
+<div>I Love<br/>Javascript!</div>
+<!-- good link http://www.css3files.com/animation/#ani2 -->
+<style>
+	div {
+		font-family: Consolas, monaco, monospace;
+		font-size: 900%;
+		font-weight: bolder;
+		text-align: center;
+	}
+	div {
+		-webkit-animation: sliding 1s both;
+	}
+	img {
+		width: 80px;
+		height: 80px;
+		-webkit-transform-origin: 50% 50%;
+	}
+	img.blink {
+/*		-webkit-animation: pulserotating 0.5s 2 alternate, 
+			fadingin 0.5s, 
+			fadingout 0.5s 1s forwards;
+*/
+		-webkit-animation: sliding 1s 2 alternate both;
+
+		-webkit-animation: pulserotating 0.5s 2 alternate;
+	}
+
+	@-webkit-keyframes pulsating {
+	  from {
+	  	-webkit-transform: scale(1);
+	  }
+	  to {
+	  	-webkit-transform: scale(2);
+	  }
+	}
+
+	@-webkit-keyframes sliding {
+	  from {
+	  	-webkit-transform: translate(-80px,-80px);
+	  }
+	  to {
+	  	-webkit-transform: translate(300px,250px);
+	  }
+	}
+
+	@-webkit-keyframes fadingout {
+		0% {
+	  		opacity : 1;
+	  	}
+		100% {
+	  		opacity : 0;
+		}
+	}
+	@-webkit-keyframes fadingin {
+		0% {
+	  		opacity : 0;
+	  	}
+		100% {
+	  		opacity : 1;
+		}
+	}
+	@-webkit-keyframes pulserotating {
+		0% {
+	  		-webkit-transform: scale(1) rotate(0turn);
+	  	}
+		100% {
+			-webkit-transform: scale(2) rotate(1turn);
+		}
+	}
+</style></body>

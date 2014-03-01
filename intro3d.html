@@ -228,7 +228,7 @@ require([ 'intro3d/bower_components/threex.skymap/package.require.js'
 		bevelEnabled	: true,
 	})
 	mesh.scale.multiplyScalar(1/5)
-	mesh.position.x	= -1.2
+	mesh.position.x	= 0
 	mesh.position.y	= -0.6
 	mesh.material	= new THREE.MeshPhongMaterial({
 		envMap	: textureCube
@@ -257,7 +257,7 @@ require([ 'intro3d/bower_components/threex.skymap/package.require.js'
 	//		add a text								//
 	//////////////////////////////////////////////////////////////////////////////////
 ;(function(){
-	var mesh	= new THREEx.Text('Games', {
+	var mesh	= new THREEx.Text('Tweets', {
 		font		: "droid serif",
 		weight		: "bold",
 		size		: 0.7,
@@ -267,14 +267,14 @@ require([ 'intro3d/bower_components/threex.skymap/package.require.js'
 		bevelEnabled	: true,
 	})
 	mesh.scale.multiplyScalar(1/5)
-	mesh.position.x	= 0
+	mesh.position.x	= -1.2
 	mesh.position.y	= -0.6
 	mesh.material	= new THREE.MeshPhongMaterial({
 		envMap	: textureCube
 	})
 	scene.add(mesh)
 
-	var url		= './games'
+	var url		= 'http://twitter.com/jerome_etienne'
 	var linkify	= new THREEx.Linkify(domEvents, mesh, url)
 	linkify.underline.material	= mesh.material.clone()
 	linkify.underline.material.color.set('cyan')

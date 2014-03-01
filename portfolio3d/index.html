@@ -334,11 +334,18 @@ require([ 'bower_components/threex.minecraft/package.require.js'
 	var player	= new THREEx.MinecraftPlayer()
 	player.character.root.rotation.y = Math.PI
 	player.character.root.position.x = 0
-	player.character.root.position.z = 5
+	player.character.root.position.z = 10
 	scene.add(player.character.root)
 	onRenderFcts.push(function(delta, now){
 		player.update(delta, now)
 	})
+	
+	onRenderFcts.push(function(delta, now){
+		var position	= player.character.root.position
+		var maxRadius	= 12
+		if( position.length() > maxRadius )	position.setLength(maxRadius)
+	})
+	
 
 	// attach camera to player
 	// player.character.root.add(camera)
@@ -447,17 +454,16 @@ require([ 'bower_components/threex.minecraft/package.require.js'
 	//////////////////////////////////////////////////////////////////////////////////
 	
 	var roomNames	= [
+		'github',
 		'betterjs',
 		'blogjetiennecom',
 		'learningthreejs',
 	];
 
-	var homeRoomName= 'betterjs'
+	var homeRoomName= 'github'
 	var roomName	= location.hash.substr(1) || homeRoomName
 	console.assert(roomNames.indexOf(roomName) !== -1, 'invalid room name');
-console.log('roomName', roomName)
 	if( roomNames.indexOf(roomName) === -1 )	roomName = homeRoomName		
-console.log('roomName', roomName)
 	var roomScriptUrl	= 'room-'+roomName+'.js'
 	location.hash		= '#'+roomName;
 
@@ -482,7 +488,7 @@ console.log('roomName', roomName)
 	request.send(null)
 	console.assert( request.status === 200 )
 	var jscode	= request.responseText
-console.log(jscode)
+// console.log(jscode)
 	eval(jscode)
 
 	//////////////////////////////////////////////////////////////////////////////////
@@ -500,46 +506,37 @@ console.log(jscode)
 
 
 		var domElement	= document.createElement('iframe');
+		domElement.style.border	= 'none'		
 		setTimeout(function(){
 			var html 	= '<!DOCTYPE html><html><body style="margin-left: 0px; margin-top: -10px; margin-right: -3px; padding: 0px; background-color: #bbbbbb; overflow: hidden;">' + htmlEmbedTweet + '</body></html>'
 			domElement.contentDocument.open();
 			domElement.contentDocument.write(html);
 			domElement.contentDocument.close();
-		}, 10);
-		
-		domElement.style.border	= 'none'		
+		}, 20);
 
-		var position		= options.position	|| console.assert(false)
-
-		var mixerPlane	= new THREEx.HtmlMixer.Plane(mixerContext, domElement, mixerPlaneOpts)
-
-		var object3d	= mixerPlane.object3d
-		scene.add(object3d)
-		onRenderFcts.push(function(delta, now){
-			mixerPlane.update(delta, now)
+		return addPage({
+			domElement	: domElement,
+			position	: position,
+			mixerPlaneOpts	: mixerPlaneOpts,	
 		})
-
-		object3d.position.copy(position)
-		object3d.scale.multiplyScalar(2)
-
-
-
-		// look at player
-		var target	= player.character.root.position.clone()
-		target.y	= object3d.position.y
-		object3d.lookAt(target)
-
-		return object3d
 	}
 
 	function addPage(options){
-		var url			= options.url		|| console.assert(false)
 		var position		= options.position	|| console.assert(false)
 		var mixerPlaneOpts	= options.mixerPlaneOpts|| {
 			elementW	: 1024
 		}
 
-		var mixerPlane	= THREEx.HtmlMixer.createPlaneFromIframe(mixerContext, url, mixerPlaneOpts)
+		if( options.url ){
+			// create the iframe element
+			var domElement	= document.createElement('iframe')
+			domElement.src	= options.url
+			domElement.style.border	= 'none'
+		}else if( options.domElement ){
+			var domElement	= options.domElement
+		}else	console.assert(false)
+
+		var mixerPlane	= new THREEx.HtmlMixer.Plane(mixerContext, domElement, mixerPlaneOpts)
 		var object3d	= mixerPlane.object3d
 		scene.add(object3d)
 		onRenderFcts.push(function(delta, now){
