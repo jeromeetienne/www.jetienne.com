@@ -1,433 +1,545 @@
-<html>
-<head>
-	<title>Jerome Etienne - Portfolio</title>
-	<link rel="stylesheet" href="css/reset.css" type="text/css" media="screen" />
+<!DOCTYPE html>
+<script src='vendor/require.js/require.js'></script>
+<script src='vendor/three.js/build/three.js'></script>
+<script src='vendor/three.js/examples/js/renderers/CSS3DRenderer.js'></script>
+<script src='vendor/three.js/examples/js/loaders/ColladaLoader.js'></script>
+<body style='margin: 0px; background-color: #bbbbbb; overflow: hidden;'>
 
-	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js" type="text/javascript"></script>
+<style>
+#infoPopup .legendButton {
+	font-weight	: bold;
+	color		: firebrick;
+}
+#infoButton {
+	position	: absolute;
+	top		: 10px;
+	left		: 10px;
+	z-index		: 2;
 
-	<script	src="isotope/jquery.isotope.js" type="text/javascript"></script>
-	<link	href="isotope/css/style.css" rel="stylesheet" type="text/css" media="screen" />
+	font-style	: italic;
+	font-size	: 180%;
+	color		: white;
 
-	<link rel="stylesheet" href="css/style.css" type="text/css" media="screen" />
-	<script src="js/script.js" type="text/javascript"></script>
-	
-	<script src="https://raw.github.com/cowboy/jquery-bbq/master/jquery.ba-bbq.js" type="text/javascript"></script>
-	
-</head>
-<body>
-	<style>
-		.navigation {
-		}
-		.navigation .title {
-			float		: left;
-			text-align	: left;
-			font-size	: 200%;
-			margin-bottom	: 20px;
-			margin-right	: 0em; 
-		}
-		.navigation .title a {
-			color	: white;
-		}
-		.navigation .title a:hover {
-			text-decoration	: underline;
-		}
-		.navigation .title .head {
-			font-size	: 50px;
-		}
-		.navigation .title .separator {
-			color	: #aaa;
-		}
-	</style>
-	
-	<style>
-		.navigation ul#filters {
-			font-size	: 150%;
-			font-weight	: bolder;
-			text-align	: center;
-			list-style	: none;
-			padding		: 0;
-			margin		: 0 auto;
-		}
-		
-		.navigation ul#filters li {
-			display		: inline-block;
-			float		: left;
-			margin		: 10px;
-			padding		: 15px;
-			border		: 2px solid #999;
-			border-radius	: 15px;
-		}
-		.navigation ul#filters li.active {
-			background-color	: #AAA;
-		}
-		.navigation ul#filters li:hover {
-			background-color: #ccc;
-			cursor		: pointer;
-		}
-		.navigation ul#filters li a {
-			color	: inherit;
-		}
-	</style>
-	<div class="navigation">
-		<div class="title">
-			<div class="head">Portfolio</div>
-			<br/>
-			<span class="separator">of</span>
-			<span class="name"><a href="..">Jerome Etienne</a></span>
-		</div>
-		<ul id="filters">
-			<li data-filter=".tag_node">Node</li>
-			<li data-filter=".tag_browser">Browser</li>
-			<li data-filter=".tag_game">Game</li>
-			<li data-filter=".tag_jquery">jQuery</li>
-			<li data-filter=".tag_realtime">Realtime</li>
-			<li data-filter=".tag_micro">MicroLib</li>
-			<li data-filter=".tag_webgl">WebGL</li>
-			<li data-filter="*">Show All</li>
-		</ul>
-	</div>
-	<script>
-	jQuery(function(){
-		// handle click on navigation menu
-		jQuery('#filters li').click(function(){
-			// get selector from dom element
-			var selector	= jQuery(this).attr('data-filter');
-			// ask jQuery.bbq to save it in history
-			jQuery.bbq.pushState({filter : selector});
-			// mark current menu button as active
-			jQuery('#filters li').removeClass('active');
-			jQuery(this).addClass('active');
-			// prevent default behavior
-			return false;
-		});
-		
-		// if hashchange, get filter from hash and push it in jQuery.isotope
-		jQuery(window).bind( 'hashchange', function( event ){
-			// get options object from hash
-			var hashOptions = jQuery.deparam.fragment();
-			// apply options from hash
-			jQuery('#container').isotope( hashOptions );
-		}).trigger('hashchange');	// trigger 'hashchange' on boot to init 
+	background	: rgba(0,0,0,0.5);
 
-		// init the navigation menu buttons based on hash filter
-		(function(){
-			// get options object from hash
-			var hashOptions = jQuery.deparam.fragment();
-			if( ! hashOptions.filter )	return
-			var filter	= hashOptions.filter;
-			// mark current filter as active
-			jQuery('#filters li').removeClass('active');
-			jQuery('#filters li[data-filter="'+filter+'"]').addClass('active');
-		}());
-		
+	padding		: 15px;
+	padding-top	: 5px;
+	padding-bottom	: 5px;
 
+
+	border-radius	: 1000px;
+	border-color	: #BDBDBD;
+	border-style	: solid;
+	border-width	: 2px;
+}
+#infoButton:hover {
+	cursor: pointer;
+}
+#infoPopup {
+	position	: absolute;
+	top		: 80px;
+	left		: 10px;
+	z-index		: 9999;
+
+	font-size	: 150%;
+	width: 30%;
+
+	color		: #BDBDBD;
+
+	background	: rgba(0,0,0,0.5);
+
+	padding		: 15px;
+	padding-top	: 5px;
+	padding-bottom	: 5px;
+
+
+	border-radius	: 10px;
+	border-color	: black;
+	border-style	: solid;
+	border-width	: 2px;
+}
+#infoPopup a {
+	color		: #8888ff;
+}
+</style>
+<div id='infoButton'>i</div>
+<div id='infoPopup' style='display: none;'>
+This page is my portfolio. This is a game because i think the portfolio of a gamedev should be a game.
+Here is how to move
+the character, use
+<span class='legendButton'>Arrows</span>
+and
+<span class='legendButton'>Shift</span>
+to strafe.
+
+<br/>
+<br/>
+<br/>
+<a href='../intro3d.html'>homepage</a>
+<br/>
+<a href='#home' onclick='location.href=this.href;location.reload();'>portfolio home</a>
+<br/>
+<a href='#betterjs' onclick='location.href=this.href;location.reload();'>betterjs room</a>
+<br/>
+<a href='#threejsgames' onclick='location.href=this.href;location.reload();'>threejs games room</a>
+<br/>
+<a href='#github' onclick='location.href=this.href;location.reload();'>github room</a>
+<br/>
+<a href='#blogjetiennecom' onclick='location.href=this.href;location.reload();'>blogjetiennecom</a>
+<br/>
+<a href='#learningthreejs' onclick='location.href=this.href;location.reload();'>learningthreejs</a>
+</div>
+<script>
+	document.querySelector('#infoButton').addEventListener('click', function(event){
+		var element	= document.querySelector('#infoPopup');
+		element.style.display	= element.style.display === 'none' ? 'block' : 'none';
 	});
-	</script>
+</script>
 
-	<style>
-	html {
-		overflow-y	: scroll;
-	}
-	#container	{
-		width		: 100%;
-		font-size	: 12px;
-		line-height	: 1.6em;
-		border		: 0px;
-	}
-	#container .slidebox .slide {
-		padding		: 15px;
-		width		: 220px;	/* 250 - 2*15 */
-		height		: 157px;	/* 187 - 2*15 */
-		font-size	: 250%;
-	}
-	#container .slidebox .content a {
-		color		: white;
-	}
-	</style>
-	<div id="container">
-		<div class="slidebox">
-			<h1 class="slide">Jerome Etienne's Portfolio</h1>
-			<h2 class="content">Here are some projects i did.</h2>
-		</div>
-		<div class="slidebox tag_game tag_browser tag_webgl">
-			<h1 class="slide">Marble Soccer<br/>- Marble game in WebGL</h1>
-			<div class="content">
-				<h3>MarbleSoccer</h3>
-				<p>
-					It is a Marble game in WebGL. It is currently in progress.
-					Its dev. is explained on learningthreejs blog.
-					It uses three.js, physics engines, and many
-					HTML5 technologies.
-				</p>
-				<p class='visit'>Visit <a href='http://marblesoccer.com'>marble soccer</a></p>			
-			</div>
-		</div>
-		<div class="slidebox tag_browser tag_webgl">
-			<h1 class="slide">LearningThreejs<br/>- blog about three.js</h1>
-			<div class="content">
-				<h3><a href='http://learningthreejs.com' target='blank'>Learning Three.js - a blog about WebGL for dummies</a></h3>
-				<p>
-					a blog about learning <a href="http://mrdoob.github.com/three.js">three.js</a> or WebGL for dummies
-				</p>
-				<p class='visit'>Visit <a href='http://learningthreejs.com'>the blog</a></p>			
-			</div>
-		</div>
-		<div class="slidebox tag_micro tag_webgl">
-			<h1 class="slide">nowebgl.js<br/>- makes WebGL calls as noop for benchmarking</h1>
-			<div class="content">
-				<h3><a href='https://github.com/jeromeetienne/nowebgl' target='blank'>nowebgl.js</a></h3>
-				<p>
-					nowebgl is a library which declares WebGL calls as noop.
-					It is made to measure performance.
-					It is usefull to benchmark the javascript part of your demo/game.
-				</p>
-				<p class='visit'>Visit <a href='https://github.com/jeromeetienne/nowebgl' target='blank'>nowebgl code</a></p>			
-			</div>
-		</div>
-		<div class="slidebox tag_game tag_node tag_browser tag_webgl">
-			<div style="background:url(image/pacmaze.png); background-size: 100%" class="slide"></div>
-			<div class="content">
-				<h3>Pacmaze</h3>
-				<p>
-					It is a pacman in WebGL. You are a pacman trapped in a maze. You
-					need to eat all the pills to get out, and avoid the ghosts in the
-					process. Well... you known pacman.
-				</p>
-				<p class='visit'>Visit <a href='http://notes.jetienne.com/2011/04/13/pacmaze-v1-release.html'>pacmaze</a></p>			
-			</div>
-		</div>
-		<div class="slidebox tag_game tag_node tag_browser tag_webgl tag_realtime">
-			<h1 class="slide">Buddymaze<br/>- fps game in webgl with twitter touch</h1>
-			<div class="content">
-				<h3>Buddymaze</h3>
-				<p>
-					It is a First Person Shoot in WebGL. You are in a dungeon with other people.
-					Invite your friend and happily shoot at each other!!!
-				</p>
-				<p class='visit'>Visit <a href='http://buddymaze.com'>buddymaze</a></p>			
-			</div>
-		</div>
-		<div class="slidebox tag_micro tag_node tag_browser">
-			<h1 class="slide">Gowiththeflow.js - Async flow control micro library</h1>
-			<div class="content">
-				<h3><a href='https://github.com/jeromeetienne/gowiththeflow.js'>Gowiththeflow.js</a></h3>
-				<p>
-					Gowiththeflow.js is a javascript asynchronous flow-control micro library.
-					only 20lines. works in node.js and browser. It allow to control how
-					your async code is executed, sequentially or in parallel.
-				</p>
-				<p class='visit'>Visit <a href='https://github.com/jeromeetienne/gowiththeflow.js' target='blank'>github</a></p>			
-			</div>
-		</div>
-		<div class="slidebox tag_node">
-			<h1 class="slide">nmod - node_modules installer</h1>
-			<div class="content">
-				<h3><a href='https://github.com/jeromeetienne/nmod'>nmod</a></h3>
-				<p>
-					nmod is a <a target='blank' href="http://nodejs.org/docs/v0.4.1/api/modules.html#loading_from_node_modules_Folders">node_modules</a>
-					packages installer.
-					node_modules is a  new feature in node.js 0.4.
-					It provides a simple and regular way to install packages
-				</p>
-				<p class='visit'>Visit <a href='https://github.com/jeromeetienne/nmod' target='blank'>nmod</a></p>			
-			</div>
-		</div>
-		<div class="slidebox tag_jquery">
-			<div style="background:url(image/jquery-mobile-960.png); background-size: 100%" class="slide"></div>
-			<div class="content">
-				<h3><a href='http://jeromeetienne.github.com/jquery-mobile-960' target='blank'>jQuery Mobile 960</a></h3>
-				<p>
-					jquery-mobile-960 is a port of 960 grid to jquery mobile. It merge
-					the flexibility of 960.gs, and the ease of jquery mobile. It aims
-					to bring more flexibility to jquery-mobile layout and thus make
-					it easier to use on tablets.
-				</p>
-			</div>
-		</div>
-		<div class="slidebox tag_jquery">
-			<h1 class="slide">jQuery QRcode</h1>
-			<div class="content">
-				<h3><a href='http://jeromeetienne.github.com/jquery-qrcode' target='blank'>jQuery QRcode</a></h3>
-				<p>
-					It is a jquery plugin for a pure browser qrcode generation to
-					easily add qrcode to your webpages.
-					It is standalone, less than 4k after minify+gzip, no image download,
-					no external services.
-					<p class='visit'>Visit <a href='http://jeromeetienne.github.com/jquery-qrcode' target='blank'>homepage</a></p>			
-				</p>
-			</div>
-		</div>
-		<div class="slidebox  tag_realtime">
-			<div style="background:url(image/easywebsocket.png); background-size: 100%" class="slide"></div>
-			<div class="content">
-				<h3><a href='http://easywebsocket.org'>Easy WebSocket</a></h3>
-				<p>
-					It's a WebSocket client to broadcast messages to webpages.
-					It's simple websockets broadcasting. It's perfect for a quick
-					prototype.. getting it going quick. 90% this is all you need if
-					you're doing websocket something.
-				</p>
-			</div>
-		</div>
-		<div class="slidebox tag_game">
-			<h1 class="slide">Physics.js</h1>
-			<div class="content">
-				<h3><a href='https://github.com/jeromeetienne/physics.js'>physics.js</a></h3>
-				<p>
-					physics.js is a javascript physics engine. It has chained
-					API (ala jQuery) and a plugin system.
-					physics.js is my attempts to make box2d easier to use.
-				</p>
-				<p class='visit'>Visit <a href='http://jeromeetienne.github.com/physics.js'>physics.js</a></p>			
-			</div>
-		</div>
-		<div class="slidebox tag_micro tag_node tag_browser">
-			<div style="background:url(image/dropinrequirejs.png); background-size: 100%" class="slide"></div>
-			<div class="content">
-				<h3><a href='https://github.com/jeromeetienne/dropinrequire.js'>Drop-In Require.js</a></h3>
-				<p>
-					It's a drop-in replacement for common js module in a browser. No server
-					to run, No preprocessing of javascript files. Using
-					<a href="http://nodejs.org">node.js</a>
-					and is willing to share code with a browser? It's for you!
-				</p>
-				<p class='visit'>Visit <a href='http://jeromeetienne.github.com/dropinrequire.js'>dropinrequire.js</a></p>			
-			</div>
-		</div>
-		<div class="slidebox tag_micro tag_node tag_browser">
-			<h1 class="slide">Microevent.js - Events for any javascript object</h1>
-			<div class="content">
-				<h3>microevent.js</h3>
-				<p>
-					MicroEvent.js is a event emitter library which provides the observer pattern to javascript objects. It works on node.js and browser. It is a single .js file containing a 20 lines class.
-				</p>
-				<p class='visit'>Visit <a href='http://notes.jetienne.com/2011/03/22/microeventjs.html'>microevent.js</a></p>			
-			</div>
-		</div>	
-		<div class="slidebox tag_micro tag_node tag_browser">
-			<h1 class="slide">MicroCache.js - A micro library for caching</h1>
-			<div class="content">
-				<h3><a href='https://github.com/jeromeetienne/microcache.js'>MicroCache.js</a></h3>
-				<p>
-					MicroCache.js is a javascript micro library to handle in-memory cache.
-					It works in works in node+browser.
-				</p>
-				<p class='visit'>Visit <a href='https://github.com/jeromeetienne/microcache.js'>MicroCache.js</a></p>			
-			</div>
-		</div>
-		<div class="slidebox tag_browser">
-			<h1 class="slide">console4Worker - console.* API for WebWorker</h1>
-			<div class="content">
-				<h3><a href='https://github.com/jeromeetienne/console4Worker'>console4Worker</a></h3>
-				<p>
-					WebWorkers are hard to debug. On top of that, console.* API is unavailable
-					in WebWorkers. It doesn't help. console4Worker is a simple library which
-					try to fill this gap.
-				</p>
-				<p class='visit'>Visit <a href='https://github.com/jeromeetienne/console4Worker'>github</a></p>			
-			</div>
-		</div>
-		<div class="slidebox tag_micro tag_node tag_browser">
-			<h1 class="slide">ShortTag.js - A micro library for templating</h1>
-			<div class="content">
-				<h3><a href='https://github.com/jeromeetienne/shorttag.js'>shorttag.js</a></h3>
-				<p>
-					ShortTag.js is a javascript template engine. It is a micro framework, only 20 lines.
-					It works in node and browser.
-				</p>
-				<p class='visit'>Visit <a href='https://github.com/jeromeetienne/shorttag.js'>github</a></p>			
-			</div>
-		</div>
-		<div class="slidebox">
-			<div style="background:url(image/acewidget.png); background-size: 100%" class="slide"></div>
-			<div class="content">
-				<h3><a href='http://jeromeetienne.github.com/acewidget'>AceWidget</a></h3>
-				<p>
-					a widget which make ace trivial to embed in your pages. It avoids the
-					global namespace collisions.
-				</p>
-				<p class='visit'>Visit <a href='http://jeromeetienne.github.com/acewidget/demo.html'>demo</a></p>			
-			</div>
-		</div>
-	
-		<div class="slidebox">
-			<div style="background:url(image/webpeer.png); background-size: 100%" class="slide"></div>
-			<div class="content">
-				<h3><a href='http://webpeer.it'>WebPeer</a></h3>
-				<p>
-					Webpeer is free and opensource. It seamlessly unifies web and
-					p2p to leverage the best both worlds in a breeze. It is
-					efficient , robust and transparent . 
-				</p>
-				<p class='visit'>Visit <a href='http://webpeer.it'>webpeer</a></p>			
-			</div>
-		</div>
-		<div class="slidebox">
-			<h1 class="slide">Jotnode</h1>
-			<div class="content">
-				<h3><a href='http://jotnode.org'>Jotnode</a></h3>
-				<p>
-					IPv4 reloaded for the mass
-				</p>
-				<p class='visit'>Visit <a href='http://jotnode.org'>jotnode</a></p>			
-			</div>
-		</div>
-		<div class="slidebox">
-			<h1 class="slide">Streamie - full realtime twitter webapp</h1>
-			<div class="content">
-				<h3><a href='http://streamie.org'>Streamie</a></h3>
-				<p>
-					Streamie is a full realtime Twitter client that runs in your web browser.
-					I <span class="highlight">contributed patches</span>, such
-					as automatic translation.
-				</p>
-				<p class='visit'>Visit <a href='http://streamie.org'>streamie.org</a></p>			
-			</div>
-		</div>
-		<div class="slidebox">
-			<h1 class="slide">dotjs - like greasemonkey but gittable</h1>
-			<div class="content">
-				<h3><a href='https://github.com/jeromeetienne/dotjs'>dotjs</a></h3>
-				<p>
-					dotjs is a Google Chrome extension that executes JavaScript files in ~/.js based on their filename.
-					I ported it to <span class="highlight">node.js</span> and made it
-					<span class="highlight">compatible with greasemonkey</span>.
-				</p>
-				<p class='visit'>Visit <a href='https://github.com/jeromeetienne/dotjs'>dotjs</a></p>			
-			</div>
-		</div>
-		<div class="slidebox">
-			<h1 class="slide">Contact</h1>
-			<div class="content">
-				<h3>Contact</h3>
-				<p>
-					You can follow me on <span class="highlight"><a href='http://twitter.com/jerome_etienne'>twitter</a></span>
-					, look at my code on <span class="highlight"><a href='http://github.com/jeromeetienne'>github</a></span>
-					, or email me <span class="highlight"><a href='mailto:jerome.etienne@gmail.com'>here</a></span>
-				</p>
-				<p class='visit'>Visit <a href='http://jetienne.com'>homepage</a></p>			
-			</div>
-		</div>
-	</div>
-	<script>
-	jQuery(function(){
-		jQuery('#container').isotope({
-			itemSelector	: '.slidebox',
-			layoutMode	: 'fitRows'
-		});			
+<style>
+@font-face {	/* for mute button which is part of awesome font */
+	font-family: 'FontAwesome';
+	src: url('vendor/Font-Awesome/font/fontawesome-webfont.eot?v=3.2.1');
+	src: url('vendor/Font-Awesome/font/fontawesome-webfont.eot?#iefix&v=3.2.1') format('embedded-opentype'), url('vendor/Font-Awesome/font/fontawesome-webfont.woff?v=3.2.1') format('woff'), url('vendor/Font-Awesome/font/fontawesome-webfont.ttf?v=3.2.1') format('truetype'), url('vendor/Font-Awesome/font/fontawesome-webfont.svg#fontawesomeregular?v=3.2.1') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+</style>
+<style>
+.osdFont {
+	font-family	: arial, verdana, sans-serif;
+	font-size	: 200%;
+	font-weight	: bolder;
+
+	transition		: opacity 0.5s ease;
+	-webkit-transition	: opacity 0.5s ease;
+
+	color		: #000;
+	text-shadow	: 0 0 0.2em #fbc, 0 0 0.2em #fbc, 0 0 0.2em #fbc;
+}
+.osdFont {
+	opacity: 0;
+	pointer-events: none;
+}
+.osdFont.visible {
+	opacity: 1;
+	pointer-events: all;
+}
+.clickableOsd:hover {
+	background-color: rgba(255,0,0,0.5);
+	border-radius	: 6px;
+	pointer		: 'hand';
+}
+.osdIcon {
+	font-family: FontAwesome;
+	font-size: 500%
+}
+.osdIcon:before {
+	line-height: 1.1;
+	padding: 10px;
+}
+</style>
+
+<style>
+#tvSetOsd {
+	position: absolute;
+	top: 20px;
+	right: 20px;
+}
+#exitOsd:before {
+	content: "\f0e2";
+}
+#homeOsd:before {
+	content: "\f015";
+}
+</style>
+
+<div id='tvSetOsd'>
+	<div id="homeOsd" class='osdFont clickableOsd osdIcon' title='Home'></div>
+	<div id="exitOsd" class='osdFont clickableOsd osdIcon' title='Exit'></div>
+</div>
+
+<script>
+require([ 'bower_components/threex.minecraft/package.require.js'
+	, 'bower_components/threex.montainsarena/package.require.js'
+	, 'bower_components/threex.daynight/package.require.js'
+	, 'bower_components/threex.htmlmixer/package.require.js'
+	, 'bower_components/threex.windowresize/package.require.js'
+	, 'bower_components/threex.tvset/package.require.js'
+	, 'bower_components/threex.domevents/threex.domevents.js'
+	, 'bower_components/threex.domevents/threex.linkify.js'
+	, 'bower_components/threex.text/package.require.js'
+	], function(){
+	var renderer	= new THREE.WebGLRenderer({
+		antialias	: true
+	});
+	renderer.setSize( window.innerWidth, window.innerHeight );
+
+	// renderer.setSize( 256,256 );
+	document.body.appendChild( renderer.domElement );
+
+	var onRenderFcts= []
+	var scene	= new THREE.Scene();
+	var camera	= new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.01, 30000 );
+	// var camera	= new THREE.PerspectiveCamera(45, 256/256, 0.01, 1000 );
+	camera.position.z = 2;
+
+	//////////////////////////////////////////////////////////////////////////////////
+	//		handle window resize						//
+	//////////////////////////////////////////////////////////////////////////////////
+
+	THREEx.WindowResize(renderer, camera)
+
+	window.addEventListener('resize', function(event){
+		mixerContext.rendererCSS.setSize( window.innerWidth, window.innerHeight )
+	}, false)
+
+	//////////////////////////////////////////////////////////////////////////////////
+	//		set 3 point lighting						//
+	//////////////////////////////////////////////////////////////////////////////////
+
+	;(function(){
+		// add a ambient light
+		var light	= new THREE.AmbientLight( 0x020202 )
+		scene.add( light )
+		// add a light in front
+		var light	= new THREE.DirectionalLight('white', 1)
+		light.position.set(0.5, 0.5, 2)
+		scene.add( light )
+		// add a light behind
+		var light	= new THREE.DirectionalLight('white', 0.75)
+		light.position.set(-0.5, -0.5, -2)
+		scene.add( light )
+	})()
+
+
+	//////////////////////////////////////////////////////////////////////////////////
+	//		comment								//
+	//////////////////////////////////////////////////////////////////////////////////
+
+	var sunAngle = Math.PI+Math.PI/2;
+	onRenderFcts.push(function(delta, now){
+		var dayDuration	= 20
+		sunAngle	-= delta/dayDuration * Math.PI*2
 	})
-	</script>
-	<!-- google analytic -->
-	<script type="text/javascript">	
-		var _gaq = _gaq || [];
-		_gaq.push(['_setAccount', 'UA-4037844-1']);
-		_gaq.push(['_trackPageview']);
+	//////////////////////////////////////////////////////////////////////////////////
+	//		starfield							//
+	//////////////////////////////////////////////////////////////////////////////////
+
+	var starField	= new THREEx.DayNight.StarField()
+	scene.add(starField.object3d)
+	onRenderFcts.push(function(delta, now){
+		starField.update(sunAngle)
+	})
+
+	//////////////////////////////////////////////////////////////////////////////////
+	//		sunSphere							//
+	//////////////////////////////////////////////////////////////////////////////////
+
+	var sunSphere	= new THREEx.DayNight.SunSphere()
+	scene.add( sunSphere.object3d )
+	onRenderFcts.push(function(delta, now){
+		sunSphere.update(sunAngle)
+	})
+
+	//////////////////////////////////////////////////////////////////////////////////
+	//		directionalLight						//
+	//////////////////////////////////////////////////////////////////////////////////
+
+	var sunLight	= new THREEx.DayNight.SunLight()
+	scene.add( sunLight.object3d )
+	onRenderFcts.push(function(delta, now){
+		sunLight.update(sunAngle)
+	})
+
+	//////////////////////////////////////////////////////////////////////////////////
+	//		skydom								//
+	//////////////////////////////////////////////////////////////////////////////////
+
+	var skydom	= new THREEx.DayNight.Skydom()
+	scene.add( skydom.object3d )
+	onRenderFcts.push(function(delta, now){
+		skydom.update(sunAngle)
+	})
+
+
+	//////////////////////////////////////////////////////////////////////////////////
+	//		add the montains						//
+	//////////////////////////////////////////////////////////////////////////////////
+	THREEx.MontainsArena.defaultMaterial	= THREE.MeshPhongMaterial
+
+	var mesh	= new THREEx.MontainsArena()
+	mesh.scale.multiplyScalar(30)
+	scene.add(mesh)
+
+	//////////////////////////////////////////////////////////////////////////////////
+	//		ground								//
+	//////////////////////////////////////////////////////////////////////////////////
+
+	var textureUrl	= 'images/grasslight-small.jpg';
+	var texture	= THREE.ImageUtils.loadTexture(textureUrl);
+	texture.wrapS	= THREE.RepeatWrapping;
+	texture.wrapT	= THREE.RepeatWrapping;
+	texture.repeat.x= 10
+	texture.repeat.y= 10
+	texture.anisotropy = 16;
+
+	var geometry	= new THREE.CircleGeometry(30, 32)
+	var material	= new THREE.MeshPhongMaterial({
+		map	: texture,
+	})
+ 	var mesh	= new THREE.Mesh(geometry, material)
+ 	mesh.lookAt(new THREE.Vector3(0,1,0))
+ 	scene.add(mesh)
+	//////////////////////////////////////////////////////////////////////////////////
+	//		comment								//
+	//////////////////////////////////////////////////////////////////////////////////
+
+	THREEx.MinecraftChar.defaultMaterial	= THREE.MeshPhongMaterial
+
+	var player	= new THREEx.MinecraftPlayer()
+	player.character.root.rotation.y = Math.PI
+	player.character.root.position.x = 0
+	player.character.root.position.z = 10
+	scene.add(player.character.root)
+	onRenderFcts.push(function(delta, now){
+		player.update(delta, now)
+	})
+	
+	onRenderFcts.push(function(delta, now){
+		var position	= player.character.root.position
+		var maxRadius	= 12
+		if( position.length() > maxRadius )	position.setLength(maxRadius)
+	})
+	
+
+	// attach camera to player
+	// player.character.root.add(camera)
+	// camera.position.z	= -2
+	// camera.position.y	= 1.2
+	// camera.lookAt(new THREE.Vector3(0,0.5,3))
+
+
+	var cameraControlsDisabled	= false
+	// keep the camera behind the player
+	// - complex but html.mixer needs the camera to be at the world level
+	onRenderFcts.push(function(delta){
+		if( cameraControlsDisabled )	return
+
+		var object3d	= player.character.root
+
+		// set camera position
+		var vector	= new THREE.Vector3(0, 1.2,-2);
+		var matrix	= new THREE.Matrix4().makeRotationY(object3d.rotation.y);
+		vector.applyMatrix4( matrix );
+		var position	= object3d.position.clone().add(vector);
+		camera.position.copy(position)
+
+		// set camera lookAt
+		var vector	= new THREE.Vector3(0, 1.2, 3);
+		var matrix	= new THREE.Matrix4().makeRotationY(object3d.rotation.y);
+		vector.applyMatrix4( matrix );
+		var target	= object3d.position.clone().add(vector);
+		camera.lookAt(target)
+	})
+
+	//////////////////////////////////////////////////////////////////////////////////
+	//		Camera Controls							//
+	//////////////////////////////////////////////////////////////////////////////////
+	// var mouse	= {x : 0, y : 0}
+	// document.addEventListener('mousemove', function(event){
+	// 	mouse.x	= (event.clientX / window.innerWidth ) - 0.5
+	// 	mouse.y	= (event.clientY / window.innerHeight) - 0.5
+	// }, false)
+	// onRenderFcts.push(function(delta, now){
+	// 	camera.position.x += (mouse.x*5 - camera.position.x) * (delta*3)
+	// 	camera.position.y += (mouse.y*5 - camera.position.y) * (delta*3)
+	// 	camera.lookAt( scene.position )
+	// })
+
+	//////////////////////////////////////////////////////////////////////////////////
+	//		controls.input based on keyboard				//
+	//////////////////////////////////////////////////////////////////////////////////
+
+	document.body.addEventListener('keydown', function(event){
+		var input	= player.controls.input
+		if( event.keyCode === 'W'.charCodeAt(0) )	input.up	= true
+		if( event.keyCode === 'S'.charCodeAt(0) )	input.down	= true
+		if( event.keyCode === 'A'.charCodeAt(0) )	input.left	= true
+		if( event.keyCode === 'D'.charCodeAt(0) )	input.right	= true
+		if( event.keyCode === 'Q'.charCodeAt(0) )	input.strafeLeft= true
+		if( event.keyCode === 'E'.charCodeAt(0) )	input.strafeRight= true
+
+		// to support arrows because tsate asked me :)
+		if( event.keyCode === 38 )			input.up	= true
+		if( event.keyCode === 40 )			input.down	= true
+		if( event.keyCode === 37 && !event.shiftKey )	input.left	= true
+		if( event.keyCode === 39 && !event.shiftKey )	input.right	= true
+		if( event.keyCode === 37 &&  event.shiftKey )	input.strafeLeft= true
+		if( event.keyCode === 39 &&  event.shiftKey )	input.strafeRight= true
+	})
+	document.body.addEventListener('keyup', function(event){
+		var input	= player.controls.input
+
+		// console.log(event.keyCode)
+
+		if( event.keyCode === 'W'.charCodeAt(0) )	input.up	= false
+		if( event.keyCode === 'S'.charCodeAt(0) )	input.down	= false
+		if( event.keyCode === 'A'.charCodeAt(0) )	input.left	= false
+		if( event.keyCode === 'D'.charCodeAt(0) )	input.right	= false
+		if( event.keyCode === 'Q'.charCodeAt(0) )	input.strafeLeft= false
+		if( event.keyCode === 'E'.charCodeAt(0) )	input.strafeRight= false
+
+		// to support arrows because tsate asked me :)
+		if( event.keyCode === 38 )			input.up	= false
+		if( event.keyCode === 40 )			input.down	= false
+		if( event.keyCode === 37 ||  event.shiftKey )	input.left	= false
+		if( event.keyCode === 39 ||  event.shiftKey )	input.right	= false
+		if( event.keyCode === 37 || !event.shiftKey )	input.strafeLeft= false
+		if( event.keyCode === 39 || !event.shiftKey )	input.strafeRight= false
+	})
+
+
+	//////////////////////////////////////////////////////////////////////////////////
+	//		create THREEx.HtmlMixer						//
+	//////////////////////////////////////////////////////////////////////////////////
+
+	var mixerContext= new THREEx.HtmlMixer.Context(renderer, scene, camera)
+	onRenderFcts.push(function(delta, now){
+		mixerContext.update(delta, now)
+	})
+
+	//////////////////////////////////////////////////////////////////////////////////
+	//		init a domEvents 						//
+	//////////////////////////////////////////////////////////////////////////////////
+
+	var domEvents	= new THREEx.DomEvents(camera, renderer.domElement)
+
+	//////////////////////////////////////////////////////////////////////////////////
+	//		Game Room							//
+	//////////////////////////////////////////////////////////////////////////////////
+	
+	var roomNames	= [
+		'threejsgames',
+		'betterjs',
+		'blogjetiennecom',
+		'github',
+		'home',
+		'learningthreejs',
+	];
+
+	var homeRoomName= 'home'
+	var roomName	= location.hash.substr(1) || homeRoomName
+	console.assert(roomNames.indexOf(roomName) !== -1, 'invalid room name');
+	if( roomNames.indexOf(roomName) === -1 )	roomName = homeRoomName		
+	var roomScriptUrl	= 'room-'+roomName+'.js'
+	location.hash		= '#'+roomName;
+
+	function gotoRoom(roomName){
+		console.assert(roomNames.indexOf(roomName) !== -1, 'invalid room name');
+		if( roomNames.indexOf(roomName) === -1 )	roomName = homeRoomName		
+		location.hash	= '#'+roomName;
+		location.reload(true)		
+	}
+	window.gotoRoom	= gotoRoom
+
+	// var roomScriptUrl	= "room-betterjs.js"
+	// var roomScriptUrl	= "room-blogjetiennecom.js"
+	// var roomScriptUrl	= "room-learningthreejs.js"
+
+	//////////////////////////////////////////////////////////////////////////////////
+	//		load and init room script					//
+	//////////////////////////////////////////////////////////////////////////////////
+
+	var request	= new XMLHttpRequest()
+	request.open("GET", roomScriptUrl, false)
+	request.send(null)
+	console.assert( request.status === 200 )
+	var jscode	= request.responseText
+// console.log(jscode)
+	eval(jscode)
+
+	//////////////////////////////////////////////////////////////////////////////////
+	//		tools								//
+	//////////////////////////////////////////////////////////////////////////////////
+
+
+	function addPageEmbedTweet(htmlEmbedTweet, options){
+		var htmlText 	= '<!DOCTYPE html><html><body style="margin-left: 0px; margin-top: -10px; margin-right: -3px; padding: 0px; background-color: #bbbbbb; overflow: hidden;">' + htmlEmbedTweet + '</body></html>'
+		return addPageHTML(htmlText, options)
+	}
+	function addPageHTML(htmlText, options){
+		var domElement	= document.createElement('iframe');
+		domElement.style.border	= 'none'		
+		setTimeout(function callback(){
+			if( !domElement.contentDocument ){
+				setTimeout(callback, 50)
+				return
+			}
+			domElement.contentDocument.open();
+			domElement.contentDocument.write(htmlText);
+			domElement.contentDocument.close();
+		}, 0);
 		
-		(function() {
-		  var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-		  ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-		  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-		})();
-	</script>
-</body>
-</html>
+		options.domElement	= domElement
+		return addPage(options)
+	}
+
+	function addPage(options){
+		var position		= options.position	|| console.assert(false)
+		var mixerPlaneOpts	= options.mixerPlaneOpts|| {
+			elementW	: 1024
+		}
+
+		if( options.url ){
+			// create the iframe element
+			var domElement	= document.createElement('iframe')
+			domElement.src	= options.url
+			domElement.style.border	= 'none'
+		}else if( options.domElement ){
+			var domElement	= options.domElement
+		}else	console.assert(false)
+
+		var mixerPlane	= new THREEx.HtmlMixer.Plane(mixerContext, domElement, mixerPlaneOpts)
+		var object3d	= mixerPlane.object3d
+		scene.add(object3d)
+		onRenderFcts.push(function(delta, now){
+			mixerPlane.update(delta, now)
+		})
+
+		object3d.position.copy(position)
+		object3d.scale.multiplyScalar(2)
+
+		// look at player
+		var target	= player.character.root.position.clone()
+		target.y	= object3d.position.y
+		object3d.lookAt(target)
+
+		return object3d
+	}
+
+	//////////////////////////////////////////////////////////////////////////////////
+	//		render the scene						//
+	//////////////////////////////////////////////////////////////////////////////////
+	onRenderFcts.push(function(){
+		renderer.render( scene, camera );
+	})
+
+	//////////////////////////////////////////////////////////////////////////////////
+	//		loop runner							//
+	//////////////////////////////////////////////////////////////////////////////////
+	var lastTimeMsec= null
+	requestAnimationFrame(function animate(nowMsec){
+		// keep looping
+		requestAnimationFrame( animate );
+		// measure time
+		lastTimeMsec	= lastTimeMsec || nowMsec-1000/60
+		var deltaMsec	= Math.min(200, nowMsec - lastTimeMsec)
+		lastTimeMsec	= nowMsec
+		// call each update function
+		onRenderFcts.forEach(function(onRenderFct){
+			onRenderFct(deltaMsec/1000, nowMsec/1000)
+		})
+	})
+})
+</script></body>
