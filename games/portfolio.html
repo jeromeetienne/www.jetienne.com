@@ -461,10 +461,39 @@ require([ 'bower_components/threex.minecraft/package.require.js'
 	var jscode	= request.responseText;
 	eval(jscode)
 
+
+	
 	//////////////////////////////////////////////////////////////////////////////////
 	//		tools								//
 	//////////////////////////////////////////////////////////////////////////////////
+	function addPageEmbedTweet(htmlEmbedTweet, options){
+		var domElement	= document.createElement('iframe');
+		domElement.contentWindow.document.open();
+		domElement.contentWindow.document.write('Hello World!');
+		domElement.contentWindow.document.close();
+		
+		domElement.style.border	= 'none'		
 
+		var position		= options.position	|| console.assert(false)
+
+		var mixerPlane	= new THREEx.HtmlMixer.Plane(mixerContext, domElement)
+
+		var object3d	= mixerPlane.object3d
+		scene.add(object3d)
+		onRenderFcts.push(function(delta, now){
+			mixerPlane.update(delta, now)
+		})
+
+		object3d.position.copy(position)
+		object3d.scale.multiplyScalar(2)
+
+		// look at player
+		var target	= player.character.root.position.clone()
+		target.y	= object3d.position.y
+		object3d.lookAt(target)
+
+		return object3d
+	}
 	function addPage(options){
 		var url			= options.url		|| console.assert(false)
 		var position		= options.position	|| console.assert(false)

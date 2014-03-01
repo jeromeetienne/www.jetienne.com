@@ -75,7 +75,7 @@ body {
 	position	: absolute;
 	top		: 80px;
 	left		: 10px;
-	z-index		: 2;
+	z-index		: 9999;
 
 	font-size	: 150%;
 	width: 30%;
@@ -103,10 +103,17 @@ body {
 i
 </div><div id='infoPopup' style='display: none;'>
 This page is my portfolio. This is a game because i think the portfolio of a gamedev should be a game.
+Here is how to move
+the character, use
+<span class='legendButton'>Arrows</span>
+and
+<span class='legendButton'>Shift</span>
+to strafe.
 
 <br/>
+<br/>
+<br/>
 <a href='../intro3d.html'>homepage</a>
-
 <br/>
 <a href='index.html'>portfolio root</a>
 <br/>
@@ -115,17 +122,6 @@ This page is my portfolio. This is a game because i think the portfolio of a gam
 <a href='index.html#blogjetiennecom'>blogjetiennecom</a>
 <br/>
 <a href='index.html#learningthreejs'>learningthreejs</a>
-
-<br/>
-<br/>
-<br/>
-
-To move
-the character, use
-<span class='legendButton'>Arrows</span>
-and
-<span class='legendButton'>Shift</span>
-to strafe.
 </div>
 <script>
 	document.querySelector('#infoButton').addEventListener('click', function(event){
@@ -486,11 +482,55 @@ console.log('roomName', roomName)
 	request.send(null)
 	console.assert( request.status === 200 )
 	var jscode	= request.responseText
+console.log(jscode)
 	eval(jscode)
 
 	//////////////////////////////////////////////////////////////////////////////////
 	//		tools								//
 	//////////////////////////////////////////////////////////////////////////////////
+
+	function addPageEmbedTweet(htmlEmbedTweet, options){
+		var position		= options.position	|| console.assert(false)
+		var mixerPlaneOpts	= options.mixerPlaneOpts|| {
+			elementW : 500,
+			planeW: 1, 
+			planeH: 705/500,
+			planeH: 505/500,
+		}
+
+
+		var domElement	= document.createElement('iframe');
+		setTimeout(function(){
+			var html 	= '<!DOCTYPE html><html><body style="margin-left: 0px; margin-top: -10px; margin-right: -3px; padding: 0px; background-color: #bbbbbb; overflow: hidden;">' + htmlEmbedTweet + '</body></html>'
+			domElement.contentDocument.open();
+			domElement.contentDocument.write(html);
+			domElement.contentDocument.close();
+		}, 10);
+		
+		domElement.style.border	= 'none'		
+
+		var position		= options.position	|| console.assert(false)
+
+		var mixerPlane	= new THREEx.HtmlMixer.Plane(mixerContext, domElement, mixerPlaneOpts)
+
+		var object3d	= mixerPlane.object3d
+		scene.add(object3d)
+		onRenderFcts.push(function(delta, now){
+			mixerPlane.update(delta, now)
+		})
+
+		object3d.position.copy(position)
+		object3d.scale.multiplyScalar(2)
+
+
+
+		// look at player
+		var target	= player.character.root.position.clone()
+		target.y	= object3d.position.y
+		object3d.lookAt(target)
+
+		return object3d
+	}
 
 	function addPage(options){
 		var url			= options.url		|| console.assert(false)
