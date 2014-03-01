@@ -6,42 +6,6 @@
 <body style='margin: 0px; background-color: #bbbbbb; overflow: hidden;'>
 
 <style>
-body {
-	background	: hotpink;
-}
-.buttonPrevNext {
-	background	: red;
-}
-.buttonPrevNext:hover {
-	background	: blue;
-	cursor		: pointer;
-}
-#infoHeader {
-	position: absolute;
-	top: 0px;
-	width: 100%;
-	text-align: center;
-
-	padding-top: 0.5em;
-
-	z-index: 2;
-	font-size: 150%;
-	color: #BDBDBD;
-
-}
-#infoHeader .title {
-	font-size: 150%;
-	background: rgba(0,0,0,0.5);
-
-	padding: 10px;
-	padding-top: 30px;
-
-	border-radius: 10px;
-
-	border-color: black;
-	border-style: solid;
-	border-width: 2px;
-}
 #infoPopup .legendButton {
 	font-weight	: bold;
 	color		: firebrick;
@@ -97,11 +61,9 @@ body {
 #infoPopup a {
 	color		: #8888ff;
 }
-</style><div id="infoHeader">
-	<span class='title'>Jerome Etienne Portfolio</span>
-</div><div id='infoButton'>
-i
-</div><div id='infoPopup' style='display: none;'>
+</style>
+<div id='infoButton'>i</div>
+<div id='infoPopup' style='display: none;'>
 This page is my portfolio. This is a game because i think the portfolio of a gamedev should be a game.
 Here is how to move
 the character, use
@@ -115,13 +77,17 @@ to strafe.
 <br/>
 <a href='../intro3d.html'>homepage</a>
 <br/>
-<a href='index.html'>portfolio root</a>
+<a href='#home' onclick='location.href=this.href;location.reload();'>portfolio home</a>
 <br/>
-<a href='index.html#betterjs'>betterjs</a>
+<a href='#betterjs' onclick='location.href=this.href;location.reload();'>betterjs room</a>
 <br/>
-<a href='index.html#blogjetiennecom'>blogjetiennecom</a>
+<a href='#threejsgames' onclick='location.href=this.href;location.reload();'>threejs games room</a>
 <br/>
-<a href='index.html#learningthreejs'>learningthreejs</a>
+<a href='#github' onclick='location.href=this.href;location.reload();'>github room</a>
+<br/>
+<a href='#blogjetiennecom' onclick='location.href=this.href;location.reload();'>blogjetiennecom</a>
+<br/>
+<a href='#learningthreejs' onclick='location.href=this.href;location.reload();'>learningthreejs</a>
 </div>
 <script>
 	document.querySelector('#infoButton').addEventListener('click', function(event){
@@ -454,13 +420,15 @@ require([ 'bower_components/threex.minecraft/package.require.js'
 	//////////////////////////////////////////////////////////////////////////////////
 	
 	var roomNames	= [
-		'github',
+		'threejsgames',
 		'betterjs',
 		'blogjetiennecom',
+		'github',
+		'home',
 		'learningthreejs',
 	];
 
-	var homeRoomName= 'github'
+	var homeRoomName= 'home'
 	var roomName	= location.hash.substr(1) || homeRoomName
 	console.assert(roomNames.indexOf(roomName) !== -1, 'invalid room name');
 	if( roomNames.indexOf(roomName) === -1 )	roomName = homeRoomName		
@@ -495,30 +463,26 @@ require([ 'bower_components/threex.minecraft/package.require.js'
 	//		tools								//
 	//////////////////////////////////////////////////////////////////////////////////
 
+
 	function addPageEmbedTweet(htmlEmbedTweet, options){
-		var position		= options.position	|| console.assert(false)
-		var mixerPlaneOpts	= options.mixerPlaneOpts|| {
-			elementW : 500,
-			planeW: 1, 
-			planeH: 705/500,
-			planeH: 505/500,
-		}
-
-
+		var htmlText 	= '<!DOCTYPE html><html><body style="margin-left: 0px; margin-top: -10px; margin-right: -3px; padding: 0px; background-color: #bbbbbb; overflow: hidden;">' + htmlEmbedTweet + '</body></html>'
+		return addPageHTML(htmlText, options)
+	}
+	function addPageHTML(htmlText, options){
 		var domElement	= document.createElement('iframe');
 		domElement.style.border	= 'none'		
-		setTimeout(function(){
-			var html 	= '<!DOCTYPE html><html><body style="margin-left: 0px; margin-top: -10px; margin-right: -3px; padding: 0px; background-color: #bbbbbb; overflow: hidden;">' + htmlEmbedTweet + '</body></html>'
+		setTimeout(function callback(){
+			if( !domElement.contentDocument ){
+				setTimeout(callback, 50)
+				return
+			}
 			domElement.contentDocument.open();
-			domElement.contentDocument.write(html);
+			domElement.contentDocument.write(htmlText);
 			domElement.contentDocument.close();
-		}, 20);
-
-		return addPage({
-			domElement	: domElement,
-			position	: position,
-			mixerPlaneOpts	: mixerPlaneOpts,	
-		})
+		}, 0);
+		
+		options.domElement	= domElement
+		return addPage(options)
 	}
 
 	function addPage(options){
