@@ -20,4 +20,4 @@ deploy: buildCss
 	git commit -a -m "New deploy" && git push -f origin HEAD:gh-pages && git reset HEAD~
 
 buildCss:
-	(cd portfolio/css && make lessc_obj)
+	(cd portfolio2d/css && make lessc_obj)
