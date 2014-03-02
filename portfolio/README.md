@@ -1,7 +1,19 @@
 Portfolio of jetienne.com
 =========================
 
+=======================================
+# home.html
+* for home.html
+  * for cartouche. 
+  * add in threex.dynamictexture http://js-bits.blogspot.fr/2010/07/canvas-rounded-corner-rectangles.html
+  * maybe the canvasx you got in pacman
+* for hover effect in home.html planets
+  * use the atmosphere from earth.html
+  * it is nice and soft
+* some sounds on hover
 
+
+================================================================
 # TODO
 * find htmlmixer links to put for each room
 * put basic location in circle
