@@ -9,18 +9,18 @@
 <body style='margin: 0px; background-color: #bbbbbb; overflow: hidden;'><script>
 require([ 'bower_components/threex.planets/package.require.js'
 	, 'bower_components/threex.dynamictexture/package.require.js'
-	// , 'bower_components/threex.skymap/package.require.js'
-	// , 'bower_components/threex.text/package.require.js'
+	, 'bower_components/webaudiox/build/webaudiox.js'
 	, 'bower_components/threex.minecraft/package.require.js'
+	, 'bower_components/threex.domevents/threex.domevents.js'
 	], function(){
 
 	var renderer	= new THREE.WebGLRenderer({
 		antialias	: true
-	});
-	renderer.setSize( window.innerWidth, window.innerHeight );
-	document.body.appendChild( renderer.domElement );
+	})
+	renderer.setSize( window.innerWidth, window.innerHeight )
+	document.body.appendChild( renderer.domElement )
 	// renderer.shadowMapEnabled	= true
-	
+
 	var onRenderFcts= [];
 	var scene	= new THREE.Scene();
 	var camera	= new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.01, 1000 );
@@ -43,7 +43,12 @@ require([ 'bower_components/threex.planets/package.require.js'
 		light.position.set(-0.5, -0.5, -2)
 		scene.add( light )
 	})()
-
+	
+	//////////////////////////////////////////////////////////////////////////////////
+	//		comment								//
+	//////////////////////////////////////////////////////////////////////////////////
+	
+	var domEvents	= new THREEx.DomEvents(camera, renderer.domElement)
 	//////////////////////////////////////////////////////////////////////////////////
 	//		comment								//
 	//////////////////////////////////////////////////////////////////////////////////
@@ -62,16 +67,21 @@ require([ 'bower_components/threex.planets/package.require.js'
 	//		added starfield							//
 	//////////////////////////////////////////////////////////////////////////////////
 	
+	var planetsContainer	= new THREE.Object3D()
+	scene.add(planetsContainer)
+	planetsContainer.position.y	= -0.5;		
+
+	onRenderFcts.push(function(delta, now){
+		planetsContainer.rotation.y += 1/8 * delta;		
+	})
+
+	var planetsLink	= []
+
+
+
 	var starSphere	= THREEx.Planets.createStarfield()
 	scene.add(starSphere)
 	
-	
-	var planets	= new THREE.Object3D()
-	scene.add(planets)
-	onRenderFcts.push(function(delta, now){
-		planets.rotation.y += 1/8 * delta;		
-	})
-
 	;(function(){
 		// build mesh
 		var mesh	= THREEx.Planets.createUranus()
@@ -87,7 +97,7 @@ require([ 'bower_components/threex.planets/package.require.js'
 		var angle	= 0 * Math.PI*2
 		mesh.position.x	= Math.cos(angle)*radius
 		mesh.position.z	= Math.sin(angle)*radius
-		planets.add(mesh)
+		planetsContainer.add(mesh)
 	
 		// label
 		var dynamicTexture	= new THREEx.DynamicTexture(512,512)
@@ -101,8 +111,45 @@ require([ 'bower_components/threex.planets/package.require.js'
 		var sprite	= new THREE.Sprite( material );
 		sprite.position.y	= 0.6
 		mesh.add(sprite)
+		
+		
+		planetsLink.push({
+			url	: 'room.html#github',
+			object3d: mesh,
+		})
 	})()
 
+
+	;(function(){
+		// build mesh
+		var mesh	= THREEx.Planets.createMoon()
+			
+		// set mesh position
+		var radius	= 2
+		var angle	= 0.25 * Math.PI*2
+		mesh.position.x	= Math.cos(angle)*radius
+		mesh.position.z	= Math.sin(angle)*radius
+		planetsContainer.add(mesh)
+
+		// label
+		var dynamicTexture	= new THREEx.DynamicTexture(512,512)
+		dynamicTexture.context.font	= "bolder 50px Verdana";
+		dynamicTexture.clear('rgba(0,0,0,0)')
+			.drawText('THREE.js Games', undefined, 256, 'white')
+		var material	= new THREE.SpriteMaterial({
+			map	: dynamicTexture.texture,
+			useScreenCoordinates: false,
+		});
+		var sprite	= new THREE.Sprite( material );
+		sprite.scale.multiplyScalar(2)
+		sprite.position.y	= 0.6
+		mesh.add(sprite)
+
+		planetsLink.push({
+			url	: 'room.html#threejsgames',
+			object3d: mesh,
+		})
+	})()
 
 	;(function(){
 		// build mesh
@@ -116,10 +163,10 @@ require([ 'bower_components/threex.planets/package.require.js'
 		
 		// set mesh position
 		var radius	= 2
-		var angle	= 0.25 * Math.PI*2
+		var angle	= 0.50 * Math.PI*2
 		mesh.position.x	= Math.cos(angle)*radius
 		mesh.position.z	= Math.sin(angle)*radius
-		planets.add(mesh)
+		planetsContainer.add(mesh)
 
 		// label
 		var dynamicTexture	= new THREEx.DynamicTexture(512,512)
@@ -133,6 +180,12 @@ require([ 'bower_components/threex.planets/package.require.js'
 		var sprite	= new THREE.Sprite( material );
 		sprite.position.y	= 0.6
 		mesh.add(sprite)
+		
+		planetsLink.push({
+			url	: 'room.html#betterjs',
+			object3d: mesh,
+		})
+
 	})()
 
 
@@ -151,10 +204,10 @@ require([ 'bower_components/threex.planets/package.require.js'
 
 		// set mesh position
 		var radius	= 2
-		var angle	= 0.50 * Math.PI*2
+		var angle	= 0.75 * Math.PI*2
 		container.position.x	= Math.cos(angle)*radius
 		container.position.z	= Math.sin(angle)*radius
-		planets.add(container)
+		planetsContainer.add(container)
 		
 		// label
 		var dynamicTexture	= new THREEx.DynamicTexture(512,512)
@@ -169,32 +222,79 @@ require([ 'bower_components/threex.planets/package.require.js'
 		sprite.scale.multiplyScalar(2)
 		sprite.position.y	= 0.6
 		container.add(sprite)
+		
+		planetsLink.push({
+			url	: 'room.html#learningthreejs',
+			object3d: container,
+		})
 	})()
 
 	;(function(){
-		// build mesh
-		var mesh	= THREEx.Planets.createMoon()
-			
-		// set mesh position
-		var radius	= 2
-		var angle	= 0.75 * Math.PI*2
-		mesh.position.x	= Math.cos(angle)*radius
-		mesh.position.z	= Math.sin(angle)*radius
-		planets.add(mesh)
+		//////////////////////////////////////////////////////////////////////////////////
+		//		to play immediatly						//
+		//////////////////////////////////////////////////////////////////////////////////
 
-		// label
-		var dynamicTexture	= new THREEx.DynamicTexture(512,512)
-		dynamicTexture.context.font	= "bolder 50px Verdana";
-		dynamicTexture.clear('rgba(0,0,0,0)')
-			.drawText('THREE.js Games', undefined, 256, 'white')
-		var material	= new THREE.SpriteMaterial({
-			map	: dynamicTexture.texture,
-			useScreenCoordinates: false,
-		});
-		var sprite	= new THREE.Sprite( material );
-		sprite.scale.multiplyScalar(2)
-		sprite.position.y	= 0.6
-		mesh.add(sprite)
+		var gameSounds	= new WebAudiox.GameSounds()
+		gameSounds.lineOut.volume	= 0.2
+
+		var mouseOverSound	= gameSounds.createSound()
+		mouseOverSound.load('sounds/29929__dj-chronos__menu-nav-3.wav')
+
+		//////////////////////////////////////////////////////////////////////////////////
+		//		comment								//
+		//////////////////////////////////////////////////////////////////////////////////
+
+		planetsLink.forEach(function(planetLink){
+			var container	= planetLink.object3d
+			var clickUrl	= planetLink.url
+			
+			//////////////////////////////////////////////////////////////////////////////////
+			//		comment								//
+			//////////////////////////////////////////////////////////////////////////////////
+			
+			// boundingBox for threex.domevents.js
+			var geometry	= new THREE.CubeGeometry(1,1,1)
+			var material	= new THREE.MeshBasicMaterial({
+				wireframe	: true
+			})
+			var boundingBox	= new THREE.Mesh(geometry, material)
+			boundingBox.visible	= false
+			container.add(boundingBox)	
+
+			// selectedIn
+			var geometry	= new THREE.SphereGeometry(0.5, 32, 32)
+			var material	= THREEx.createAtmosphereMaterial()
+			material.uniforms.glowColor.value.set(0x00b3ff)
+			material.uniforms.coeficient.value	= 0.9
+			material.uniforms.power.value		= 1.5
+			var selectedIn	= new THREE.Mesh(geometry, material );
+			selectedIn.scale.multiplyScalar(1.2);
+			selectedIn.visible	= false
+			container.add( selectedIn );
+			
+			// handle click
+			domEvents.bind(boundingBox, 'click', function(event){
+				location.href	= clickUrl
+			});
+		
+			// bind 'mouseover'
+			domEvents.bind(boundingBox, 'mouseover', function(event){
+				selectedIn.visible	= true;
+
+				mouseOverSound.play()
+				document.body.style.cursor	= 'pointer';
+			}, false)
+				
+			// bind 'mouseout'
+			domEvents.bind(boundingBox, 'mouseout', function(event){
+				selectedIn.visible	= false;		
+				mouseOverSound.play()
+				document.body.style.cursor	= 'default';
+			}, false)
+		})
+		
+		
+				
 	})()
 
 	//////////////////////////////////////////////////////////////////////////////////
@@ -206,8 +306,8 @@ require([ 'bower_components/threex.planets/package.require.js'
 		mouse.y	= (event.clientY / window.innerHeight) - 0.5
 	}, false)
 	onRenderFcts.push(function(delta, now){
-		camera.position.x += (mouse.x*5 - camera.position.x) * (delta*3)
-		camera.position.y += (mouse.y*5 - camera.position.y) * (delta*3)
+		camera.position.x += (mouse.x*1.0 - camera.position.x) * (delta*3)
+		camera.position.y += (mouse.y*0.5 - camera.position.y) * (delta*3)
 		camera.lookAt( scene.position )
 	})
 
