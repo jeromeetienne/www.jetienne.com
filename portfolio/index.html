@@ -6,7 +6,41 @@
 <script src='bower_components/threex.planets/examples/vendor/three.js/examples/js/libs/dat.gui.min.js'></script>
 <script src="bower_components/threex.planets/threex.atmospheredatgui.js"></script>
 
-<body style='margin: 0px; background-color: #bbbbbb; overflow: hidden;'><script>
+<body style='margin: 0px; background-color: #000000; overflow: hidden;'>
+<style>
+#scrollText {
+	background: rgba(1,1,1,0.5);
+	color: white;
+	overflow: hidden;
+
+	position: absolute;
+	left: 0;
+	top: 0;
+
+	font-family: Monospace;
+	font-weight: bolder;
+	font-size: 8em;
+
+	width: 7000px;
+}
+#scrollText.sliding {
+	-webkit-animation: sliding 40s both linear infinite;
+}
+
+@-webkit-keyframes sliding {
+  from {
+  	-webkit-transform: translate(1800px,0px);
+  }
+  to {
+  	-webkit-transform: translate(-7000px,0px);
+  }
+}
+
+</style>
+<div id='scrollText' class='sliding'>
+Hello, you. Welcome in my portfolio. My name is Jerome Etienne. Let me tell you more about myself.
+</div>
+<script>
 require([ 'bower_components/threex.planets/package.require.js'
 	, 'bower_components/threex.dynamictexture/package.require.js'
 	, 'bower_components/webaudiox/build/webaudiox.js'
@@ -69,7 +103,7 @@ require([ 'bower_components/threex.planets/package.require.js'
 	
 	var planetsContainer	= new THREE.Object3D()
 	scene.add(planetsContainer)
-	planetsContainer.position.y	= -0.5;		
+	planetsContainer.position.y	= -0.5
 
 	onRenderFcts.push(function(delta, now){
 		planetsContainer.rotation.y += 1/8 * delta;		
