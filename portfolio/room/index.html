@@ -95,37 +95,13 @@
 	});
 </script>
 
-<!-- ------------------------------------------------------------- -->
-<!-- --                        BREADCRUB			-- -->
-<!-- ------------------------------------------------------------- -->
-<style>
-#breadscrub {
-	font-family	: arial, verdana, sans-serif;
-	font-size	: 2em;
-	font-weight	: bolder;
-	color		: white;
-	position	: absolute;
-	top		: 10px;
-	left		: 10px;
-	z-index		: 2;
-}
-</style>
-<div id='breadscrub'>
-	<a href='../../'>Home</a>
-	>
-	<a href='../index.html'>Portfolio</a>
-	>
-	<span class='currentRoom'></span>
-</div>
-<script>
-// update
-;(function(){
-	var roomName	= location.hash.substr(1)
-	document.querySelector('#breadscrub .currentRoom').innerText	= roomName	
-})()
-</script>
+<!-- ------------------------------------------------------------ -->
+<!-- --                        BREADCRUB		       -- -->
+<!-- ------------------------------------------------------------ -->
+<link rel="stylesheet" href="/web/breadcrub/breadcrub.css" />
+<script src="/web/breadcrub/breadcrub.js"></script>
+<!-- ------------------------------------------------------------ -->
 
-<!-- ------------------------------------------------------------- -->
 
 <style>
 @font-face {	/* for mute button which is part of awesome font */

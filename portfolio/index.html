@@ -10,12 +10,12 @@
 <style>
 #scrollText {
 	background: rgba(1,1,1,0.5);
-	color: white;
+	color	: white;
 	overflow: hidden;
 
 	position: absolute;
-	left: 0;
-	top: 0;
+	left	: 0;
+	bottom	: 0;
 
 	font-family: Monospace;
 	font-weight: bolder;
@@ -40,6 +40,14 @@
 <div id='scrollText' class='sliding'>
 Hello, you. Welcome in my portfolio. My name is Jerome Etienne. Let me tell you more about myself.
 </div>
+
+<!-- ------------------------------------------------------------ -->
+<!-- --                        BREADCRUB		       -- -->
+<!-- ------------------------------------------------------------ -->
+<link rel="stylesheet" href="../web/breadcrub/breadcrub.css" />
+<script src="../web/breadcrub/breadcrub.js"></script>
+<!-- ------------------------------------------------------------ -->
+
 <script>
 require([ 'bower_components/threex.planets/package.require.js'
 	, 'bower_components/threex.dynamictexture/package.require.js'
@@ -89,21 +97,34 @@ require([ 'bower_components/threex.planets/package.require.js'
 	
 	var player	= new THREEx.MinecraftPlayer()
 	player.character.root.position.x = 0
-	player.character.root.position.y = -1
+	player.character.root.position.y = -0.5
 	player.character.root.position.z = 0
-	player.character.root.scale.multiplyScalar(2)
+	player.character.root.scale.multiplyScalar(1.5)
 	scene.add(player.character.root)
 	onRenderFcts.push(function(delta, now){
 		player.update(delta, now)
 	})
+	// label
+	var dynamicTexture	= new THREEx.DynamicTexture(512,512)
+	dynamicTexture.context.font	= "bolder 50px Verdana";
+	dynamicTexture.clear('rgba(0,0,0,0)')
+		.drawText('Jerome.Etienne', undefined, 256, 'white')
+	var material	= new THREE.SpriteMaterial({
+		map	: dynamicTexture.texture,
+		useScreenCoordinates: false,
+	});
+	var sprite	= new THREE.Sprite( material );
+	sprite.scale.multiplyScalar(2)
+	sprite.position.y	= 1.1
+	player.character.root.add(sprite)
 	
 	//////////////////////////////////////////////////////////////////////////////////
-	//		added starfield							//
+	//		added starfield + planets							//
 	//////////////////////////////////////////////////////////////////////////////////
 	
 	var planetsContainer	= new THREE.Object3D()
 	scene.add(planetsContainer)
-	planetsContainer.position.y	= -0.5
+	planetsContainer.position.y	= -0.1
 
 	onRenderFcts.push(function(delta, now){
 		planetsContainer.rotation.y += 1/8 * delta;		
@@ -341,7 +362,7 @@ require([ 'bower_components/threex.planets/package.require.js'
 	}, false)
 	onRenderFcts.push(function(delta, now){
 		camera.position.x += (mouse.x*1.0 - camera.position.x) * (delta*3)
-		camera.position.y += (mouse.y*0.5 - camera.position.y) * (delta*3)
+		camera.position.y += (mouse.y*2.0 +1 - camera.position.y) * (delta*3)
 		camera.lookAt( scene.position )
 	})
 
