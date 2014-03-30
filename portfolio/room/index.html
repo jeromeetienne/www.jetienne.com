@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<script src='vendor/require.js/require.js'></script>
-<script src='vendor/three.js/build/three.js'></script>
-<script src='vendor/three.js/examples/js/renderers/CSS3DRenderer.js'></script>
-<script src='vendor/three.js/examples/js/loaders/ColladaLoader.js'></script>
+<script src='../vendor/require.js/require.js'></script>
+<script src='../vendor/three.js/build/three.js'></script>
+<script src='../vendor/three.js/examples/js/renderers/CSS3DRenderer.js'></script>
+<script src='../vendor/three.js/examples/js/loaders/ColladaLoader.js'></script>
 <body style='margin: 0px; background-color: #000000; overflow: hidden;'>
 
 <style>
@@ -111,7 +111,11 @@
 }
 </style>
 <div id='breadscrub'>
-	<a href='..'>Home</a> > <a href='index.html'>Portfolio</a> > <span class='currentRoom'></span>
+	<a href='../../'>Home</a>
+	>
+	<a href='../index.html'>Portfolio</a>
+	>
+	<span class='currentRoom'></span>
 </div>
 <script>
 // update
@@ -126,8 +130,8 @@
 <style>
 @font-face {	/* for mute button which is part of awesome font */
 	font-family: 'FontAwesome';
-	src: url('vendor/Font-Awesome/font/fontawesome-webfont.eot?v=3.2.1');
-	src: url('vendor/Font-Awesome/font/fontawesome-webfont.eot?#iefix&v=3.2.1') format('embedded-opentype'), url('vendor/Font-Awesome/font/fontawesome-webfont.woff?v=3.2.1') format('woff'), url('vendor/Font-Awesome/font/fontawesome-webfont.ttf?v=3.2.1') format('truetype'), url('vendor/Font-Awesome/font/fontawesome-webfont.svg#fontawesomeregular?v=3.2.1') format('svg');
+	src: url('../vendor/Font-Awesome/font/fontawesome-webfont.eot?v=3.2.1');
+	src: url('../vendor/Font-Awesome/font/fontawesome-webfont.eot?#iefix&v=3.2.1') format('embedded-opentype'), url('../vendor/Font-Awesome/font/fontawesome-webfont.woff?v=3.2.1') format('woff'), url('../vendor/Font-Awesome/font/fontawesome-webfont.ttf?v=3.2.1') format('truetype'), url('../vendor/Font-Awesome/font/fontawesome-webfont.svg#fontawesomeregular?v=3.2.1') format('svg');
 	font-weight: normal;
 	font-style: normal;
 }
@@ -187,16 +191,16 @@
 </div>
 
 <script>
-require([ 'bower_components/threex.minecraft/package.require.js'
-	, 'bower_components/threex.montainsarena/package.require.js'
-	, 'bower_components/threex.daynight/package.require.js'
-	, 'bower_components/threex.htmlmixer/package.require.js'
-	, 'bower_components/threex.windowresize/package.require.js'
-	, 'bower_components/threex.tvset/package.require.js'
-	, 'bower_components/threex.domevents/threex.domevents.js'
-	, 'bower_components/threex.domevents/threex.linkify.js'
-	, 'bower_components/threex.text/package.require.js'
-	, 'bower_components/threex.planets/package.require.js'
+require([ '../bower_components/threex.minecraft/package.require.js'
+	, '../bower_components/threex.montainsarena/package.require.js'
+	, '../bower_components/threex.daynight/package.require.js'
+	, '../bower_components/threex.htmlmixer/package.require.js'
+	, '../bower_components/threex.windowresize/package.require.js'
+	, '../bower_components/threex.tvset/package.require.js'
+	, '../bower_components/threex.domevents/threex.domevents.js'
+	, '../bower_components/threex.domevents/threex.linkify.js'
+	, '../bower_components/threex.text/package.require.js'
+	, '../bower_components/threex.planets/package.require.js'
 	], function(){
 	var renderer	= new THREE.WebGLRenderer({
 		antialias	: true
@@ -304,7 +308,7 @@ require([ 'bower_components/threex.minecraft/package.require.js'
 	//		ground								//
 	//////////////////////////////////////////////////////////////////////////////////
 
-	var textureUrl	= 'images/grasslight-small.jpg';
+	var textureUrl	= '../images/grasslight-small.jpg';
 	var texture	= THREE.ImageUtils.loadTexture(textureUrl);
 	texture.wrapS	= THREE.RepeatWrapping;
 	texture.wrapT	= THREE.RepeatWrapping;
@@ -456,7 +460,7 @@ require([ 'bower_components/threex.minecraft/package.require.js'
 		'learningthreejs',
 	];
 
-	var homeRoomName= 'home'
+	var homeRoomName= 'github'
 	var roomName	= location.hash.substr(1) || homeRoomName
 	console.assert(roomNames.indexOf(roomName) !== -1, 'invalid room name');
 	if( roomNames.indexOf(roomName) === -1 )	roomName = homeRoomName		
