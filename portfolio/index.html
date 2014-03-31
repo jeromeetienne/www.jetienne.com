@@ -1,12 +1,18 @@
 <!DOCTYPE html>
 <script src='vendor/require.js/require.js'></script>
 <script src='vendor/three.js/build/three.js'></script>
+<script src='vendor/gowiththeflow.js'></script>
+<script src="vendor/threex.windowresize.js"></script>
 
 <!-- include for threex.glowdatgui -->
 <script src='bower_components/threex.planets/examples/vendor/three.js/examples/js/libs/dat.gui.min.js'></script>
 <script src="bower_components/threex.planets/threex.atmospheredatgui.js"></script>
 
 <body style='margin: 0px; background-color: #000000; overflow: hidden;'>
+
+<!-- ------------------------------------------------------------ -->
+<!-- --                        scrollText		       -- -->
+<!-- ------------------------------------------------------------ -->
 <style>
 #scrollText {
 	background: rgba(1,1,1,0.5);
@@ -40,6 +46,89 @@
 <div id='scrollText' class='sliding'>
 Hello everybody! My name is Jerome Etienne. Welcome to my portfolio. Let me tell you more about myself...
 </div>
+<!-- ------------------------------------------------------------ -->
+
+
+<!-- ------------------------------------------------------------ -->
+<!-- --                        infoPopup		       -- -->
+<!-- ------------------------------------------------------------ -->
+<style>
+#infoPopup .legendButton {
+	font-weight	: bold;
+	color		: firebrick;
+}
+#infoButton {
+	position	: absolute;
+	top		: 10px;
+	right		: 10px;
+	z-index		: 2;
+
+	font-style	: italic;
+	font-size	: 180%;
+	color		: white;
+
+	background	: rgba(0,0,0,0.5);
+
+	padding		: 15px;
+	padding-top	: 5px;
+	padding-bottom	: 5px;
+
+
+	border-radius	: 1000px;
+	border-color	: #BDBDBD;
+	border-style	: solid;
+	border-width	: 2px;
+}
+#infoButton:hover {
+	cursor: pointer;
+}
+#infoPopup {
+	position	: absolute;
+	top		: 80px;
+	right		: 10px;
+	z-index		: 9999;
+
+	font-size	: 150%;
+	width: 30%;
+
+	color		: #BDBDBD;
+
+	background	: rgba(0,0,0,0.5);
+
+	padding		: 15px;
+	padding-top	: 5px;
+	padding-bottom	: 5px;
+
+
+	border-radius	: 10px;
+	border-color	: black;
+	border-style	: solid;
+	border-width	: 2px;
+}
+#infoPopup a {
+	color		: #8888ff;
+}
+</style>
+<div id='infoButton'>i</div>
+<div id='infoPopup' style='display: none;'>
+The guy in the middle is me, aka a minecraft character with my very own skin.
+<br/><br/>
+I organized the portfolio as a mini game, because it's cool for a game dev :)
+<br/><br/>
+The planets around me represent the main skills I've got.
+Just click on them to know more!
+<script>
+;(function(){
+	// handle click on #infoButton to open #infoPopup
+	document.querySelector('#infoButton').addEventListener('click', function(event){
+		var element	= document.querySelector('#infoPopup');
+		element.style.display	= element.style.display === 'none' ? 'block' : 'none';
+	});
+})()
+</script>
+<!-- ------------------------------------------------------------ -->
+
+
 
 <!-- ------------------------------------------------------------ -->
 <!-- --                        BREADCRUB		       -- -->
@@ -49,9 +138,9 @@ Hello everybody! My name is Jerome Etienne. Welcome to my portfolio. Let me tell
 <!-- ------------------------------------------------------------ -->
 
 <script>
-require([ 'bower_components/threex.planets/package.require.js'
+require([ '../intro3d/bower_components/threex.planets/package.require.js'
 	, 'bower_components/threex.dynamictexture/package.require.js'
-	, 'bower_components/webaudiox/build/webaudiox.js'
+	, '../intro3d/bower_components/webaudiox/build/webaudiox.js'
 	, 'bower_components/threex.minecraft/package.require.js'
 	, 'bower_components/threex.domevents/threex.domevents.js'
 	], function(){
@@ -67,6 +156,9 @@ require([ 'bower_components/threex.planets/package.require.js'
 	var scene	= new THREE.Scene();
 	var camera	= new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.01, 1000 );
 	camera.position.z = 4;
+
+	// handle window resize events
+	var winResize	= new THREEx.WindowResize(renderer, camera)
 
 	//////////////////////////////////////////////////////////////////////////////////
 	//		set 3 point lighting						//
@@ -104,6 +196,58 @@ require([ 'bower_components/threex.planets/package.require.js'
 	onRenderFcts.push(function(delta, now){
 		player.update(delta, now)
 	})
+
+	// init headAnims and bodyAnims
+	var headAnims	= new THREEx.MinecraftCharHeadAnimations(player.character);
+	onRenderFcts.push(function(delta, now){
+		headAnims.update(delta, now)	
+	})
+	var bodyAnims	= new THREEx.MinecraftCharBodyAnimations(player.character);
+	onRenderFcts.push(function(delta, now){
+		bodyAnims.update(delta, now)	
+	})
+	launchMinecraftAnim();
+	function launchMinecraftAnim(){
+		Flow().seq(function(next){
+			headAnims.start('yes');
+			bodyAnims.start('hiwave');
+			setTimeout(function(){
+				bodyAnims.start('stand')
+				headAnims.start('still')
+				next()
+			}, 1000*15)
+		}).seq(function(next){
+			setTimeout(function(){
+				next()
+			}, 1000*3)		
+		}).seq(function(next){
+			bodyAnims.start('wave');
+			setTimeout(function(){
+				next()
+			}, 1000*10)		
+		}).seq(function(next){
+			setTimeout(function(){
+				next()
+			}, 1000*3)		
+		}).seq(function(next){
+			headAnims.start('yes');
+			bodyAnims.start('wave');
+			setTimeout(function(){
+				bodyAnims.start('stand')
+				headAnims.start('still')
+				next()
+			}, 1000*10)
+		}).seq(function(next){
+			setTimeout(function(){
+				next()
+			}, 1000*10)		
+		}).seq(function(next){
+			launchMinecraftAnim()
+			next()
+		})
+	}
+
+
 	// label
 	var dynamicTexture	= new THREEx.DynamicTexture(512,512)
 	dynamicTexture.context.font	= "bolder 50px Verdana";
