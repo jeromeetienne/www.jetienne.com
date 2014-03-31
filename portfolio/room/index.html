@@ -5,6 +5,10 @@
 <script src='../vendor/three.js/examples/js/loaders/ColladaLoader.js'></script>
 <body style='margin: 0px; background-color: #000000; overflow: hidden;'>
 
+<!-- ------------------------------------------------------------ -->
+<!-- --                        infoPopup		       -- -->
+<!-- ------------------------------------------------------------ -->
+
 <style>
 #infoPopup .legendButton {
 	font-weight	: bold;
@@ -64,36 +68,82 @@
 </style>
 <div id='infoButton'>i</div>
 <div id='infoPopup' style='display: none;'>
-	This page is my portfolio. This is a game because i think the portfolio of a gamedev should be a game.
-	Here is how to move
-	the character, use
-	<span class='legendButton'>Arrows</span>
-	and
-	<span class='legendButton'>Shift</span>
-	to strafe.
+	You can control the minecraft Jerome with your <strong>keyboard arrows</strong> and go wherever you want.
 	<br/>
+	The map contains demos, pictures or interactive html pages (yes, 
+	<a href='http://learningthreejs.com/blog/2013/04/30/closing-the-gap-between-html-and-webgl/'>inside the Webgl</a>)
+	of some of the cool stuff I've created. 
 	<br/>
-	<br/>
-	<a href='../intro3d.html'>homepage</a>
-	<br/>
-	<a href='.' onclick='location.href=this.href;location.reload();'>portfolio home</a>
-	<br/>
-	<a href='#betterjs' onclick='location.href=this.href;location.reload();'>betterjs room</a>
-	<br/>
-	<a href='#threejsgames' onclick='location.href=this.href;location.reload();'>threejs games room</a>
-	<br/>
-	<a href='#github' onclick='location.href=this.href;location.reload();'>github room</a>
-	<br/>
-	<a href='#blogjetiennecom' onclick='location.href=this.href;location.reload();'>blogjetiennecom</a>
-	<br/>
-	<a href='#learningthreejs' onclick='location.href=this.href;location.reload();'>learningthreejs</a>
+	Come with me and let me take you through a visit of my home Galaxy! 
+	I hope you enjoy it! 
 </div>
 <script>
+;(function(){
+	// handle click on #infoButton to open #infoPopup
 	document.querySelector('#infoButton').addEventListener('click', function(event){
 		var element	= document.querySelector('#infoPopup');
 		element.style.display	= element.style.display === 'none' ? 'block' : 'none';
 	});
+	// honor special #infoPopup if in threejsgames room
+	var roomName	= location.hash.substr(1)	
+	if( roomName === 'threejsgames' ){
+		var html 	= 'The a big TV at the center is a virtual console...'
+			+ ' You can play 5 mini games I wrote.'
+			+ ' Just use the menu on the TV and select the one you want to play.'
+			+ 'It\'s all interactive 3D in 3D. Web is so fun man.'
+			+ '<strong>Check it out :)</strong><br/><br/>'
+		var element	= document.querySelector('#infoPopup')
+		element.innerHTML	= html + element.innerHTML
+	}
+})()
 </script>
+<!-- ------------------------------------------------------------ -->
+
+
+<!-- ------------------------------------------------------------ -->
+<!-- --                        infoFooter		       -- -->
+<!-- ------------------------------------------------------------ -->
+<style>
+#infoFooter {
+	position: absolute;
+	bottom: 1em;
+	width: 100%;
+	text-align: center;
+
+	padding-top: 0.5em;
+
+	z-index: 2;
+	font-size: 150%;	
+	color: #BDBDBD;
+
+}
+#infoFooter .title {
+	background: rgba(0,0,0,0.5);
+
+	padding: 10px;
+
+	border-radius: 10px;
+	border-color: black;
+	border-style: solid;
+	border-width: 2px;
+}
+#infoFooter .legendButton {
+	font-weight	: bold;
+	color		: firebrick;
+}
+</style>
+<div id="infoFooter">
+	<span class='title'>
+		<span class='legendButton'>Arrows keys</span> 
+		to move
+		-
+		<span class='legendButton'>Shift key</span>
+		to strafe
+	</span>
+</div>
+<!-- ------------------------------------------------------------ -->
+
+
 
 <!-- ------------------------------------------------------------ -->
 <!-- --                        BREADCRUB		       -- -->

@@ -37,6 +37,7 @@ THREEx.Linkify	= function(domEvents, mesh, url, withBoundingBox){
 	// bind the click
 	var eventTarget	= withBoundingBox ? boundingBox : mesh 
 	this.eventTarget= eventTarget
+console.log('dddsdafdsfadsf', eventTarget)
 	domEvents.bind(eventTarget, 'click', function(event){
 		window.open(url, '_blank');
 	});

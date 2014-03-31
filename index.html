@@ -111,7 +111,7 @@ require([ 'intro3d/bower_components/threex.skymap/package.require.js'
 	if( !Detector.webgl ){
 		Detector.addGetWebGLMessage();
 		// throw 'WebGL Not Available'
-		location.href	= 'index.html'
+		location.href	= 'index2d.html'
 		return
 	}
 	// setup webgl renderer full page
@@ -205,7 +205,7 @@ require([ 'intro3d/bower_components/threex.skymap/package.require.js'
 	//////////////////////////////////////////////////////////////////////////////////
 
 ;(function(){
-	var mesh	= new THREEx.Text('Jerome Etienne', {
+	var mesh	= new THREEx.Text('Jerome.Etienne', {
 		font		: "droid serif",
 		weight		: "bold",
 		size		: 0.8,
@@ -248,6 +248,14 @@ require([ 'intro3d/bower_components/threex.skymap/package.require.js'
 	linkify.underline.material	= mesh.material.clone()
 	linkify.underline.material.color.set('cyan')
 	linkify.underline.material.opacity	= 0.6
+	
+	// ugly kludge to avoid linkify to open another tab
+	// - NOTE: it should be in linkify options
+	linkify.eventTarget._3xDomEvent.clickHandlers	= []
+	domEvents.bind(linkify.eventTarget, 'click', function(event){
+		location.href	= url
+	});
+
 
 	// add noise on mouseover/mouseout
 	domEvents.bind(linkify.eventTarget, 'mouseover', function(event){

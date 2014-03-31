@@ -5,7 +5,7 @@
 	//////////////////////////////////////////////////////////////////////////////////
 	
 	var mixerPlane	= addPage({
-		url		: 'http://jeromeetienne.github.io/threex/',
+		url		: 'http://jeromeetienne.github.io/stellar7/',
 		position	: new THREE.Vector3(4,2,5),
 	})
 	mixerPlane.scale.multiplyScalar(2)
@@ -15,7 +15,7 @@
 	//////////////////////////////////////////////////////////////////////////////////
 	
 	var mixerPlane	= addPage({
-		url		: 'http://www.threejsgames.com/index2d.html',
+		url		: 'http://jeromeetienne.github.io/threex/',
 		position	: new THREE.Vector3(-4,2,5),
 	})
 	mixerPlane.scale.multiplyScalar(2)

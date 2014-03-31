@@ -14,7 +14,7 @@
 	//////////////////////////////////////////////////////////////////////////////////
 	
 	var mixerPlane	= addPage({
-		url		: 'http://learningthreejs.com/',
+		url		: 'http://learningthreejs.com/blog/2012/05/15/punch-a-doom-character-in-augmented-reality/',
 		position	: new THREE.Vector3(0,3,0),
 		mixerPlaneOpts	: {
 			elementW: 1024,
