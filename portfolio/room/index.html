@@ -175,30 +175,19 @@
 	border-color	: black;
 	border-style	: solid;
 	border-width	: 2px;
+
+	opacity		: 0;
 }
-#boastingFacts.hidden {
-	display: none; 
-}
-
-@-webkit-keyframes fadeInFromNone {
-    0% {
-        display:none; 
-        opacity: 0;
-    }
-
-    1% {
-        display: block ; 
-        opacity: 0;
-    }
-
-    100% {
-        display: block ; 
-        opacity: 1;
-    }
+#boastingFacts.visible {
+	opacity		: 1;
+  -webkit-transition: opacity 0.5s ease-in-out;
+    -moz-transition: opacity 0.5s ease-in-out;
+    transition: opacity 0.5s ease-in-out;	
 }
 </style>
 
-<div id="boastingFacts" class='hidden'></div>
+
+<div id="boastingFacts" class=''></div>
 <script>
 ;(function(){
 	// honor special #infoPopup if in threejsgames room
@@ -288,17 +277,21 @@
 		})
 		facts.forEach(function(fact){
 			flow.seq(function(next){
+				soundBoastingBang.play()
 				element.innerHTML	= fact
-				element.classList.remove("hidden");
+				element.classList.add("visible");
 				setTimeout(function(){
-					element.classList.add("hidden");
-					next()
+					soundBoastingApplaude.play()
+					setTimeout(function(){
+						element.classList.remove("visible");
+						next()
+					}, 1000*4)
 				}, 1000*2)
 			})
 			flow.seq(function(next){
 				setTimeout(function(){
 					next()
-				}, 1000*2)
+				}, 1000*4)
 			})
 		})
 		flow.seq(function(next){
@@ -394,6 +387,7 @@ require([ '../bower_components/threex.minecraft/package.require.js'
 	, '../bower_components/threex.htmlmixer/package.require.js'
 	, '../bower_components/threex.windowresize/package.require.js'
 	, '../bower_components/threex.tvset/package.require.js'
+	, '../../intro3d/bower_components/webaudiox/build/webaudiox.js'
 	, '../bower_components/threex.domevents/threex.domevents.js'
 	, '../bower_components/threex.domevents/threex.linkify.js'
 	, '../bower_components/threex.text/package.require.js'
@@ -769,5 +763,30 @@ require([ '../bower_components/threex.minecraft/package.require.js'
 			onRenderFct(deltaMsec/1000, nowMsec/1000)
 		})
 	})
+
+
+
+	//////////////////////////////////////////////////////////////////////////////////
+	//		sounds								//
+	//////////////////////////////////////////////////////////////////////////////////
+	
+
+	;(function(){
+		//////////////////////////////////////////////////////////////////////////////////
+		//		to play immediatly						//
+		//////////////////////////////////////////////////////////////////////////////////
+
+		var gameSounds	= new WebAudiox.GameSounds()
+		gameSounds.lineOut.volume	= 0.2
+
+		var soundBoastingBang	= gameSounds.createSound()
+		soundBoastingBang.load('sounds/196914__dpoggioli__laser-gun.wav')
+		window.soundBoastingBang	= soundBoastingBang
+
+
+		var soundBoastingApplaude	= gameSounds.createSound()
+		soundBoastingApplaude.load('sounds/169834__timtube__round-applause.wav')
+		window.soundBoastingApplaude	= soundBoastingApplaude
+	})()
 })
 </script></body>
