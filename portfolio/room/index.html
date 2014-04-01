@@ -277,11 +277,11 @@
 		})
 		facts.forEach(function(fact){
 			flow.seq(function(next){
-				soundBoastingBang.play()
+				window.soundBoastingBang && soundBoastingBang.play()
 				element.innerHTML	= fact
 				element.classList.add("visible");
 				setTimeout(function(){
-					soundBoastingApplaude.play()
+					window.soundBoastingApplaude && soundBoastingApplaude.play()
 					setTimeout(function(){
 						element.classList.remove("visible");
 						next()
@@ -777,7 +777,7 @@ require([ '../bower_components/threex.minecraft/package.require.js'
 		//////////////////////////////////////////////////////////////////////////////////
 
 		var gameSounds	= new WebAudiox.GameSounds()
-		gameSounds.lineOut.volume	= 0.2
+		gameSounds.lineOut.volume	= 0.1
 
 		var soundBoastingBang	= gameSounds.createSound()
 		soundBoastingBang.load('sounds/196914__dpoggioli__laser-gun.wav')
