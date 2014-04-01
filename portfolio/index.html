@@ -8,9 +8,9 @@
 <script src="vendor/threex.windowresize.js"></script>
 
 <!-- include for threex.glowdatgui -->
-<script src='bower_components/threex.planets/examples/vendor/three.js/examples/js/libs/dat.gui.min.js'></script>
-<script src="bower_components/threex.planets/threex.atmospheredatgui.js"></script>
-
+<!-- <script src='../intro3d/bower_components/threex.planets/examples/vendor/three.js/examples/js/libs/dat.gui.min.js'></script>
+<script src="../intro3d/bower_components/threex.planets/threex.atmospheredatgui.js"></script>
+ -->
 <body style='margin: 0px; background-color: #000000; overflow: hidden;'>
 
 <!-- ------------------------------------------------------------ -->
@@ -142,10 +142,10 @@ Just click on them to know more!
 
 <script>
 require([ '../intro3d/bower_components/threex.planets/package.require.js'
-	, 'bower_components/threex.dynamictexture/package.require.js'
 	, '../intro3d/bower_components/webaudiox/build/webaudiox.js'
+	, '../intro3d/bower_components/threex.domevents/threex.domevents.js'
+	, 'bower_components/threex.dynamictexture/package.require.js'
 	, 'bower_components/threex.minecraft/package.require.js'
-	, 'bower_components/threex.domevents/threex.domevents.js'
 	], function(){
 
 	var renderer	= new THREE.WebGLRenderer({

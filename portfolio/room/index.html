@@ -393,8 +393,8 @@ require([ '../bower_components/threex.minecraft/package.require.js'
 	, '../bower_components/threex.windowresize/package.require.js'
 	, '../bower_components/threex.tvset/package.require.js'
 	, '../../intro3d/bower_components/webaudiox/build/webaudiox.js'
-	, '../bower_components/threex.domevents/threex.domevents.js'
-	, '../bower_components/threex.domevents/threex.linkify.js'
+	, '../../intro3d/bower_components/threex.domevents/threex.domevents.js'
+	, '../../intro3d/bower_components/threex.domevents/threex.linkify.js'
 	, '../bower_components/threex.text/package.require.js'
 	], function(){
 	var renderer	= new THREE.WebGLRenderer({
@@ -798,26 +798,25 @@ require([ '../bower_components/threex.minecraft/package.require.js'
 
 
 <!-- ************************************************************ -->
-<!-- Share Part -->
+	<!-- Share Part -->
+	<div style='position: absolute; top: 10px; right: 10px;'>
+		<!-- twitter -->
+		<a href="https://twitter.com/share" class="twitter-share-button" data-via="jerome_etienne">Tweet</a>
+		<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
 
-<div style='position: absolute; top: 10px; right: 10px;'>
-	<!-- twitter -->
-	<a href="https://twitter.com/share" class="twitter-share-button" data-via="jerome_etienne">Tweet</a>
-	<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+		<!-- ******************* google plus ************************* -->
+		<!-- Place this tag where you want the +1 button to render. -->
+		<div class="g-plusone" data-size="medium"></div>
 
-	<!-- ******************* google plus ************************* -->
-	<!-- Place this tag where you want the +1 button to render. -->
-	<div class="g-plusone" data-size="medium"></div>
-
-	<!-- Place this tag after the last +1 button tag. -->
-	<script type="text/javascript">
-	  (function() {
-	    var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
-	    po.src = 'https://apis.google.com/js/plusone.js';
-	    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
-	  })();
-	</script>
-</div>
+		<!-- Place this tag after the last +1 button tag. -->
+		<script type="text/javascript">
+		  (function() {
+		    var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+		    po.src = 'https://apis.google.com/js/plusone.js';
+		    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+		  })();
+		</script>
+	</div>
 
 
     <!-- google analytic -->
