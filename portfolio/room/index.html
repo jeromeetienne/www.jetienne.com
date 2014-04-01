@@ -3,6 +3,7 @@
 <script src='../vendor/three.js/build/three.js'></script>
 <script src='../vendor/three.js/examples/js/renderers/CSS3DRenderer.js'></script>
 <script src='../vendor/three.js/examples/js/loaders/ColladaLoader.js'></script>
+<script src='../vendor/gowiththeflow.js'></script>
 <body style='margin: 0px; background-color: #000000; overflow: hidden;'>
 
 <!-- ------------------------------------------------------------ -->
@@ -70,12 +71,16 @@
 <div id='infoPopup' style='display: none;'>
 	You can control the minecraft Jerome with your <strong>keyboard arrows</strong> and go wherever you want.
 	<br/>
+	<br/>
 	The map contains demos, pictures or interactive html pages (yes, 
 	<a href='http://learningthreejs.com/blog/2013/04/30/closing-the-gap-between-html-and-webgl/'>inside the Webgl</a>)
 	of some of the cool stuff I've created. 
+	In the left bottom corner, some boasting facts appear.. 
+	not too modest but afterall this is my portfolio :)
+	<br/>
 	<br/>
 	Come with me and let me take you through a visit of my home Galaxy! 
-	I hope you enjoy it! 
+	I hope you enjoy it
 </div>
 <script>
 ;(function(){
@@ -141,6 +146,172 @@
 		to strafe
 	</span>
 </div>
+<!-- ------------------------------------------------------------ -->
+
+
+<!-- ------------------------------------------------------------ -->
+<!-- --                        boasting facts		       -- -->
+<!-- ------------------------------------------------------------ -->
+<style>
+#boastingFacts {
+	position	: absolute;
+	bottom	 	: 1em;
+	left		: 1em;
+	z-index		: 9999;
+
+	font-size	: 150%;
+	width		: 25%;
+
+	color		: #BDBDBD;
+
+	background	: rgba(0,0,0,0.5);
+
+	padding		: 15px;
+	padding-top	: 5px;
+	padding-bottom	: 5px;
+
+
+	border-radius	: 10px;
+	border-color	: black;
+	border-style	: solid;
+	border-width	: 2px;
+}
+#boastingFacts.hidden {
+	display: none; 
+}
+
+@-webkit-keyframes fadeInFromNone {
+    0% {
+        display:none; 
+        opacity: 0;
+    }
+
+    1% {
+        display: block ; 
+        opacity: 0;
+    }
+
+    100% {
+        display: block ; 
+        opacity: 1;
+    }
+}
+</style>
+
+<div id="boastingFacts" class='hidden'></div>
+<script>
+;(function(){
+	// honor special #infoPopup if in threejsgames room
+	var roomName	= location.hash.substr(1)	
+	if( roomName === 'github' ){
+		var facts	= [
+			[ "I was ranked 8th most active user in github. Pretty good hey?",
+			  "[<a href='https://twitter.com/jerome_etienne/status/439690466527698944' target='_blank'>tweet</a>]",
+			].join('\n'),
+			[ "I have more than <a href='https://github.com/jeromeetienne?tab=repositories' target='_blank'>163 repositories<a/>",
+			  "and they're all open source!",
+			].join('\n'),
+			[ "My most popular repository is a small",
+			  "<a href='https://github.com/jeromeetienne/jquery-qrcode' target='_blank'>Jquery plugin doing Qr-code</a>",
+			  "that I wrote in 40 minutes...funny no?"
+			].join('\n'),
+		]
+	}else if( roomName === 'betterjs' ){
+		var facts	= [
+			[ "If you think Javascript has no private....Think again! With Better.js you can :)",
+			].join('\n'),
+			[ "If you think Javascript has no strong typing....Think again! With Better.js you can :)",
+			].join('\n'),
+			[ "Nobody believed it was possible....I made it. In 100% plain old Javascript!",
+			  "Backward compatibility FTW :)",
+			].join('\n'),
+		]
+	}else if( roomName === 'threejsgames' ){
+		var facts	= [
+			[ "I do a lot of threex extensions to help you write video games. 40 and counting!",
+			  "Don't be shy and have fun with them! (Meta: mettre le lien threex)"
+			].join('\n'),
+			[ "I did Stellar7 in less than 2 weeks. All thanks to threex",
+			  "extensions who did most of the job for me!",
+			].join('\n'),
+			[ "In the vintage console TV you can play 5 mini games I wrote",
+			  "Check them out, they're cool! You can play the 3D",
+			  " Man, the web is GREAT!",
+			].join('\n'),
+		]
+	}else if( roomName === 'learningthreejs' ){
+		var facts	= [
+			[ "<a href='http://learningthreejs.com/blog/archives/' target='_blank'>60+ tutorials and 20+ talks</a>!",
+			  "All about three.js and how to make cool things with it!",
+			].join('\n'),
+			[ "I invented a way to include your html pages inside webgl.",
+			  "I call it the ",
+			  "<a href='http://learningthreejs.com/blog/2013/04/30/closing-the-gap-between-html-and-webgl/' target='_blank'>HTML Mixer</a>!",
+			].join('\n'),
+			[ "Doesn't seem like much but it is <strong>HUGE</strong> :)",
+			  "<br/><br/>",
+			  "It allows you to link the whole web with your three.js scene",
+			].join('\n'),
+			[ "Just to give you and idea <a href='http://twitter.com/tojiro' target='_blank'>Brandon Jones</a>",
+			  "well known webgl expert part of",
+			  "Chrome GPU team said: 'One of the first WebGL demos in a long while",
+			  "that made me sit up and say \"Wait, how?\" Awesome work, Jerome!'",
+			  "[<a href='https://plus.google.com/+BrandonJonesToji/posts/ZiJ77RAscrC' target='_blank'>link</a>]",
+			].join('\n'),
+			[ "<a href='https://twitter.com/mrdoob' target='_blank'>@mrdoob</a> said: 'This is genius' on IRC",
+			].join('\n'),
+			[ "<a href='https://twitter.com/thekhronosgroup' target='_blank'>khronos</a> retweeted it :) Meta: Find the link",
+			].join('\n'),
+			[ "I'm quite proud of this one!",
+			].join('\n'),
+			[ "I punched Doom character in the face through a webcam :)",
+			  "I knocked him out!",
+			  "<br/><br/>Watch it <a href='https://www.youtube.com/watch?v=hUYM93xaIgg' target='_blank'>here'</a>",
+			  "All that live at a Conference :)",
+			].join('\n'),
+		]
+	}else console.assert(false, 'unhandled roomName')
+
+	
+	launchFactsAnimation(facts)
+	
+	//////////////////////////////////////////////////////////////////////////////////
+	//		comment								//
+	//////////////////////////////////////////////////////////////////////////////////
+	
+	function launchFactsAnimation(facts){
+		var element	= document.querySelector('#boastingFacts')
+		var flow	= Flow().seq(function(next){
+			setTimeout(function(){
+				next()
+			}, 1000*2)
+		})
+		facts.forEach(function(fact){
+			flow.seq(function(next){
+				element.innerHTML	= fact
+				element.classList.remove("hidden");
+				setTimeout(function(){
+					element.classList.add("hidden");
+					next()
+				}, 1000*2)
+			})
+			flow.seq(function(next){
+				setTimeout(function(){
+					next()
+				}, 1000*2)
+			})
+		})
+		flow.seq(function(next){
+			setTimeout(function(){
+				launchFactsAnimation(facts)
+				next()
+			}, 1000*5)
+		})
+		
+	}
+	
+})()
+</script>
 <!-- ------------------------------------------------------------ -->
 
 
