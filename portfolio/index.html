@@ -62,7 +62,7 @@ Hello everybody! My name is Jerome Etienne. Welcome to my portfolio. Let me tell
 }
 #infoButton {
 	position	: absolute;
-	top		: 10px;
+	top		: 50px;
 	right		: 10px;
 	z-index		: 2;
 
@@ -87,7 +87,7 @@ Hello everybody! My name is Jerome Etienne. Welcome to my portfolio. Let me tell
 }
 #infoPopup {
 	position	: absolute;
-	top		: 80px;
+	top		: 100px;
 	right		: 10px;
 	z-index		: 9999;
 
@@ -114,12 +114,14 @@ Hello everybody! My name is Jerome Etienne. Welcome to my portfolio. Let me tell
 </style>
 <div id='infoButton'>i</div>
 <div id='infoPopup' style='display: none;'>
-The guy in the middle is me, aka a minecraft character with my very own skin.
+<h3>Welcome To My World!</h3>
+The guy saying 'Hi!' in the middle is me. Aka a minecraft character with my very own skin.
 <br/><br/>
 I organized the portfolio as a mini game, because it's cool for a game dev :)
 <br/><br/>
 The planets around me represent the main skills I've got.
 Just click on them to know more!
+</div>
 <script>
 ;(function(){
 	// handle click on #infoButton to open #infoPopup
@@ -568,14 +570,13 @@ require([ '../intro3d/bower_components/threex.planets/package.require.js'
 <!-- ************************************************************ -->
 	<!-- Share Part -->
 	<div style='position: absolute; top: 10px; right: 10px;'>
-		<!-- twitter -->
+		<!-- ******************* Twitter ************************* -->
 		<a href="https://twitter.com/share" class="twitter-share-button" data-via="jerome_etienne">Tweet</a>
 		<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
 
 		<!-- ******************* google plus ************************* -->
 		<!-- Place this tag where you want the +1 button to render. -->
 		<div class="g-plusone" data-size="medium"></div>
-
 		<!-- Place this tag after the last +1 button tag. -->
 		<script type="text/javascript">
 		  (function() {
@@ -584,6 +585,10 @@ require([ '../intro3d/bower_components/threex.planets/package.require.js'
 		    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
 		  })();
 		</script>
+
+
+		<!-- ******************* Facebook ************************* -->
+		<iframe src="http://www.facebook.com/plugins/like.php?href=http%3A%2F%2Fjetienne.com%2Fportfolio&width&layout=button_count&action=like&show_faces=true&share=false&height=21&appId=85934995681" scrolling="no" frameborder="0" style="border:none; overflow:hidden; height:21px; width: 100px;" allowTransparency="true"></iframe>
 	</div>
 
 

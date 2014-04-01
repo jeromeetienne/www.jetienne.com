@@ -1,3 +1,10 @@
+var roomHumanNames	= {
+	'threejsgames'		: 'Three.js Games',
+	'github'		: 'GitHub',
+	'learningthreejs'	: 'Leaning Three.js Blog',
+	'betterjs'		: 'Better.js'
+}
+
 // update
 ;(function(){
 	// build html for breadcrub depending on location.pathname
@@ -16,9 +23,9 @@
 			" > ",
 			"<a href='/portfolio'>Portfolio</a>",
 			" > ",
-			roomName
+			roomHumanNames[roomName]
 		].join('\n')
-	}else	console.assert(false, 'unknown pathg')
+	}else	console.assert(false, 'unknown roomName')
 	
 	// create the element and add it to the body
 	var element	= document.createElement('div')
