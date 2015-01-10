@@ -136,6 +136,11 @@
 		size.x	= (geometry.boundingBox.max.x - geometry.boundingBox.min.x)
 		size.y	= (geometry.boundingBox.max.y - geometry.boundingBox.min.y)
 		size.z	= (geometry.boundingBox.max.z - geometry.boundingBox.min.z)
+
+		// make the text higher
+		geometry.applyMatrix( new THREE.Matrix4().makeTranslation( 0, size.y/2, 0 ) );
+	
+
 	
 		// create the boundingBox if needed
 		var boundingBox	= new THREE.Mesh(new THREE.CubeGeometry(1,1,1), new THREE.MeshBasicMaterial({
@@ -195,11 +200,15 @@
 		size.y	= (geometry.boundingBox.max.y - geometry.boundingBox.min.y)
 		size.z	= (geometry.boundingBox.max.z - geometry.boundingBox.min.z)
 	
+		// make the text higher
+		geometry.applyMatrix( new THREE.Matrix4().makeTranslation( 0, size.y/2, 0 ) );
+
 		// create the boundingBox if needed
 		var boundingBox	= new THREE.Mesh(new THREE.CubeGeometry(1,1,1), new THREE.MeshBasicMaterial({
 			wireframe	: true
 		}))
 		boundingBox.visible	= false
+		boundingBox.position.y	= size.y/2
 		boundingBox.scale.copy(size)
 		mesh.add(boundingBox)	
 		

@@ -652,10 +652,12 @@ require([ '../bower_components/threex.minecraft/package.require.js'
 		var input	= player.controls.input
 		if( event.keyCode === 'W'.charCodeAt(0) )	input.up	= true
 		if( event.keyCode === 'S'.charCodeAt(0) )	input.down	= true
-		if( event.keyCode === 'A'.charCodeAt(0) )	input.left	= true
-		if( event.keyCode === 'D'.charCodeAt(0) )	input.right	= true
 		if( event.keyCode === 'Q'.charCodeAt(0) )	input.strafeLeft= true
 		if( event.keyCode === 'E'.charCodeAt(0) )	input.strafeRight= true
+		if( event.keyCode === 'A'.charCodeAt(0) && !event.shiftKey )	input.left	= true
+		if( event.keyCode === 'D'.charCodeAt(0) && !event.shiftKey )	input.right	= true
+		if( event.keyCode === 'A'.charCodeAt(0) &&  event.shiftKey )	input.strafeLeft= true
+		if( event.keyCode === 'D'.charCodeAt(0) &&  event.shiftKey )	input.strafeRight= true
 
 		// to support arrows because tsate asked me :)
 		if( event.keyCode === 38 )			input.up	= true
@@ -672,10 +674,12 @@ require([ '../bower_components/threex.minecraft/package.require.js'
 
 		if( event.keyCode === 'W'.charCodeAt(0) )	input.up	= false
 		if( event.keyCode === 'S'.charCodeAt(0) )	input.down	= false
-		if( event.keyCode === 'A'.charCodeAt(0) )	input.left	= false
-		if( event.keyCode === 'D'.charCodeAt(0) )	input.right	= false
 		if( event.keyCode === 'Q'.charCodeAt(0) )	input.strafeLeft= false
 		if( event.keyCode === 'E'.charCodeAt(0) )	input.strafeRight= false
+		if( event.keyCode === 'A'.charCodeAt(0) ||  event.shiftKey )	input.left	= false
+		if( event.keyCode === 'D'.charCodeAt(0) ||  event.shiftKey )	input.right	= false
+		if( event.keyCode === 'A'.charCodeAt(0) ||  event.shiftKey )	input.strafeLeft= false
+		if( event.keyCode === 'D'.charCodeAt(0) ||  event.shiftKey )	input.strafeRight= false
 
 		// to support arrows because tsate asked me :)
 		if( event.keyCode === 38 )			input.up	= false

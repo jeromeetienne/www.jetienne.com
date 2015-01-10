@@ -214,21 +214,21 @@ require([ '../intro3d/bower_components/threex.planets/package.require.js'
 	launchMinecraftAnim();
 	function launchMinecraftAnim(){
 		Flow().seq(function(next){
+			bodyAnims.start('wave');
+			setTimeout(function(){
+				bodyAnims.start('stand')
+				next()
+			}, 1000*5)
+		}).seq(function(next){
+			setTimeout(function(){
+				next()
+			}, 1000*1)		
+		}).seq(function(next){
 			headAnims.start('yes');
 			bodyAnims.start('hiwave');
 			setTimeout(function(){
 				bodyAnims.start('stand')
 				headAnims.start('still')
-				next()
-			}, 1000*15)
-		}).seq(function(next){
-			setTimeout(function(){
-				next()
-			}, 1000*3)		
-		}).seq(function(next){
-			bodyAnims.start('wave');
-			setTimeout(function(){
-				next()
 			}, 1000*10)		
 		}).seq(function(next){
 			setTimeout(function(){
@@ -245,7 +245,7 @@ require([ '../intro3d/bower_components/threex.planets/package.require.js'
 		}).seq(function(next){
 			setTimeout(function(){
 				next()
-			}, 1000*10)		
+			}, 1000*5)		
 		}).seq(function(next){
 			launchMinecraftAnim()
 			next()
