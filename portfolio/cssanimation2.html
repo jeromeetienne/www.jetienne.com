@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<body>
+<script src='vendor/gowiththeflow.js'></script>
+<img id='starImage' class='slidingAnimation' src='images/star.png'></img>
+<!-- good link http://www.css3files.com/animation/#ani2 -->
+<style>
+	#starImage {
+		position: absolute;
+	}
+
+	.slidingAnimation {
+		-webkit-animation: sliding 1s both,
+				pulserotating 1s 1s 2 alternate both,
+				fadingout 0.5s 5s both;
+	}
+	@-webkit-keyframes sliding {
+	  from {
+		left: 100%;
+		bottom: 100%;
+	  	-webkit-transform: rotate(0turn);
+	  }
+	  to {
+	  	left: 0%;
+		bottom: 0%;
+	  	-webkit-transform: rotate(-1turn);
+	  }
+	}
+	@-webkit-keyframes pulserotating {
+		0% {
+	  		-webkit-transform: scale(1) rotate(0turn);
+	  	}
+		100% {
+			-webkit-transform: scale(2) rotate(2turn);
+		}
+	}
+	@-webkit-keyframes fadingout {
+		0% {
+	  		opacity : 1;
+	  	}
+		100% {
+	  		opacity : 0;
+		}
+	}
+</style>
+<script>
+	var element	= document.querySelector('#starImage')
+	// launch()
+	function launch(){
+		Flow()
+			.seq(function(next){
+				element.style.webkitAnimation	= 'sliding 1s both'
+				element.addEventListener('webkitAnimationEnd', function(){
+					console.log('animation end', arguments)
+					next()
+				})			
+			})
+			// .seq(function(next){
+			// 	element.style.webkitAnimation	= 'pulserotating 0.5s 2 alternate both'
+			// 	element.addEventListener('webkitAnimationEnd', function(){
+			// 		console.log('animation end', arguments)
+			// 		next()
+			// 	})			
+			// })
+			.seq(function(next){
+				element.style.webkitAnimation	= 'fadingout 0.5s both'
+				element.addEventListener('webkitAnimationEnd', function(){
+					console.log('animation end', arguments)
+					next()
+				})			
+			})
+			.seq(function(next){
+				setTimeout(function(){
+					launch()
+					next()					
+				}, 2000)
+			})
+		
+	}
+</script>
+</body>

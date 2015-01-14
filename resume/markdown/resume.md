@@ -1,10 +1,36 @@
 # Jerome Etienne
 
 ## Senior Developer & Code Enthusiast
+  
+> Website: [jetienne.com](http://jetienne.com)
+> Email: [jerome.etienne@gmail.com](mailto:jerome.etienne@gmail.com)
+> Twitter: [@jerome_etienne](http://twitter.com/jerome_etienne)
+> Github: [jeromeetienne](http://github.com/jeromeetienne)
 
-> [davidhampgonsalves.com](http://www.davidhampgonsalves.com)
-> [davidhampgonsalves@gmail.com](mailto:davidhampgonsalves@gmail.com)
-> (902) 817-3574
+------
+
+### WEBGL
+
+**Learning Three.js** - *Technical blog to learn three.js* [link](http://learningthreejs.com)
+	Very varied content: 3D physics, performance, games, shadows, boilerplate. 
+
+**THREEx Game Extensions** - *40+ Extensions to help code games with three.js* [link](http://www.threejsgames.com/extensions/)
+	Game extensions to help you write games with three.js
+
+**Demos/Games Extensions** - *blablabla* [link](http://jeromeetienne.github.io/stellar7/)
+	Demos and games that I have created and talked about in Confs.
+
+------
+
+### Javascript Projects
+
+**Better.js** - *Javascript to Javascript compiler* [link](http://betterjs.org/)
+	Adding new and unexpected features to the most used language in the world 
+	Strong typing and private visibility 
+
+**Microlibs** - *Node JS and Javascript* 
+	Flow control [gowiththeflow.js](), events [microevent.js](), templating [shorttag.js](), commonjs [dropinrequire.js]() 
+	 
 
 ------
 
@@ -28,25 +54,28 @@
 
 ### Experience
 
-**NTTData** *Senior Consultant* __2012 to present__
-	Designed Backbone.js based application to replace and improve upon existing legacy system.
-	Introduced BDD style testing using Jasmine/Karma into existing application code.
-	Developed modern solutions and features for large Enterprise Java systems.
-	Collaborated with and guided global team members transitioning to client side architecture.
-	**Technical Environment** Backbone.js, Jasmine.js, Coffeescript, SpringSource, Tomcat.
+**WebGL Consultant** __2014 to present__
+    Consulting work for international companies 
+    Mainly on three.js to develop 3D editors and VR engines.  
 
-**Sumtotal Systems** *Senior Java Developer* __2008 to 2012__
-	Designed and implemented features and improvements for multiple enterprise sized applications.
-	Automated manual report generation for legacy ticketing system to provide reliable team analytics.
-	Provided quality solutions to mission critical production issues in a timely manner.
-	Proposed, designed and implemented a realtime tracking, deployment and notification system for test environments.
-	**Technical Environment** Weblogic/Websphere, SpringSource/Wicket, MSSQL/Oracle, JUnit.
+**Beloola** *CTO* __2012 to 2014__
+	Leading the developer team to design a real time multiplayer game exploiting the latest new technology. 
+	Using Web RTC, Web Audio and Web Socket. 
 
-**We Can Pretend** *Technical Consultant* __2011__
-	Architected and implemented a interactive media streaming service that enabled realtime, massively multiplayer, jeopardy-style interactions.
-	Built host interface to inject synchronized prompts, overlays and widgets into live video stream.
-	Created detailed documentation regarding technical requirements, project time lines and staffing guidelines for realizing total product offering.
-	**Technical Environment** Wowza Media Server, Adobe Flex, Javascript.
+**Cybronics** *Research and development manager* __2010 to 2011__
+	Designed and implemented photo sharing application on html5
+	Developed embedded application on connected TV for Samsung SmartTV contest
+
+
+**Terza** *Cofounder+bitmover* __2009 to 2010__
+	Video/audio format conversion for ubiquitous access
+	Point to point data replication
+	Prototyping in Python and Ruby on Rails 
+
+**AlphaSoft** *Project Manager* __2008 to 2009__
+	Handled the migration of a legacy application to current web technology 
+	Testing and Evaluation of the mainweb frameworks Django, Rails and Symfony 
+	Benchmarking of object-relational managers 
 
 <!--
 **Redline Distribution** *Web Application Developer* __2008__
@@ -55,30 +84,48 @@
 	**Technical Environment** JBoss, Seam, MySQL, Hibernate, JSF, RichFaces, EJB.
 -->
 
-**CIBC** *Test Analyst* __2007 to 2008__
-	Eliminated manual testing processes with automated QTP scripts to increase productivity and limit repetitive human task based testing.
-	Worked cohesively with other developers and team members to plan, design and implement multi-system automated tests which simulate multiple users and roles.
-	**Technical Environment** VB, Quick Test Professional.
-
 ------
 
-### Projects
+### Speaker and Tech Confs - see slides [link]()
 
-* **Ethical Barcode**
-	<a href=http://www.ethicalbarcode.com class=not-printed>ethicalbarcode.com</a>
-	Cordova based app(iOS & Android) that leverages a huge amalgamation of public data. Driven by over 30 web spiders, 15 webservices and multiple external databases it provides brand ratings from non-profit organisations by scanning product barcodes.
+* **Future of Web Apps London**
+	Around WebGl, javascript and game 
 
-* **Halifax Crime Heatmap**
-	<a href=http://www.crimeheatmap.ca class=not-printed>crimeheatmap.ca</a>
-	HTML5 Animated heatmap visualising crimes in the city of Halifax. Built on a customised version Heatmap.js library which enables smooth animation. Won silver in the [Apps4Halifax](http://apps4halifax.ca/) city category.
+* **NextGameFrontier Paris**
+	How to make a Game with Three.js [video link]()
 
-* **Foxish**
-	<a href=https://chrome.google.com/webstore/detail/jpgagcapnkccceppgljfpoadahaopjdb class=not-printed>chrome.google.com</a>
-	Chrome extension that enables Firefox-style live RSS feeds with over fifteen thousand active users a 4/5 star rating. Featured on [Gizmodo](http://gizmodo.com/5609633/10-add+ons-you-have-to-know-about-for-google-chrome) & [LifeHacker](http://lifehacker.com/5603602/foxish-live-rss-adds-live-bookmarks-to-google-chrome).
+* **Paris.js**
+	Developer conf in Paris around javascript and games 
 
+* **Node.js**
+	Developer conf in Paris around node.js and games
+
+* **Html5 game jam**
+	Presented easywebsocket and how to use it in games 	
+
+* **Mozilla fest London**
+    Animated a stand about robot making for 3D printer 
+
+* **Webgl camp at Google London**
+	Presented pacmaze [link]() in june 2011 
+
+* **Upcoming web-5**
+	tQuery "three.js power + jQuery API Usability"
+
+* **OnGameStart 12**
+	Three.js and Games 
 ------
 
 ### Education
 
-**Bachelor of Technology (Software Development)** __2003 to 2007__
-	Seneca College of Applied Arts and Technology (Seneca@York), Toronto, Ontario
+**Post graduate degree in Image Processing** __1996 to 1997__
+	DEA at Ecole Normale Superieure - top research school 
+
+**Computer engineering degree** __june 1997__
+	INSA Lyon/France (MSCS equiv) 
+
+**Engineering School** __1994 to 1997__
+	INSA Lyon/France (the most important in France) 
+
+**Computer Science degree** __1992 to 1994__
+	Two-year University degree in computer science
