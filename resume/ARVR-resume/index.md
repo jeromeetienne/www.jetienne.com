@@ -1,12 +1,70 @@
 # Jerome Etienne
 
-## Senior Developer & Tech Speaker 
+## Principal Engineer in AR/VR
   
 > Website:[jetienne.com](http://jetienne.com)
 > Email : [jerome.etienne@gmail.com](mailto:jerome.etienne@gmail.com)
 > Twitter:[@jerome_etienne](http://twitter.com/jerome_etienne)
 > Github: [jeromeetienne](http://github.com/jeromeetienne)
 > Visa: H1B
+
+
+------
+
+### Achievements
+
+**Wrote AR.js** - *Efficient Augmented Reality for the Web* - [github](https://github.com/jeromeetienne/AR.js)
+        *Very Fast* : it runs efficiently even on phones. [60 fps on my 2 year-old phone](https://twitter.com/jerome_etienne/status/831333879810236421)!
+        *Very Webby* : It is a pure web solution, so no installation required. Full javascript based on three.js + jsartoolkit5
+        *Free and Open* : It is completely open source and free of charge!
+        *Pure Standards* : It works on any phone with [webgl](http://caniuse.com/#feat=webgl) and [webrtc](http://caniuse.com/#feat=stream)
+
+**Implemented WebVR 3 times** - 
+        One to make Daqri Smart Helmet daydream ready. 
+        One to record and replay webvr. It is used as a way to record AR experiences and replay them to build mixed reality videos. 
+        One as a way to expert ARToolkit positional tracking
+
+**Written 3 editor for 3d content** - one for game, one for architecture, one for Augmented Reality 
+    4D Studio: i wrote all the original code 
+    An architect wanted to simulate new furniture and new lighting in an existent apartment, and we worked on a proof of concept based on that. 
+    **TODO** detail the one for game.
+
+**Wrote a JS variant which support strong type checking and still remains backward compatible.**
+    [babel plugin](https://github.com/jeromeetienne/babel-plugin-jsdoced)
+    [jsdoced.js](http://jsdocedjs.org)
+
+
+**Wrote 50+ THREEx Game Extensions** - *50 Extensions to help code games with three.js* [link](http://www.threejsgames.com/extensions/)
+	Game extensions to help you write games with three.js
+
+**I have been 8th most active user on github** - [link](https://twitter.com/jerome_etienne/status/439690466527698944/photo/1)
+        Sharing code is important to me.
+
+**Learning Three.js** - *Technical blog to learn three.js* [link](http://learningthreejs.com)
+	Varied content: 3D physics, performance, games, shadows, boilerplate.
+	"*You've made something quite awesome, sir*" - [Paul Irish](http://www.paulirish.com/) about learningthreejs - [here](https://twitter.com/paul_irish/status/127490017693138944) 
+
+------
+
+### Work History
+
+**Daqri** *Senior Staff Engineer & three.js Team Lead* __2014 to 2017__
+    Tech Lead in three.js team - Developper relation - Augmented Reality workshop At Oxford
+    Made Daqri smart helmet to Daydream Ready
+    Implemented support WebVR and Gamepad API in daqri browser
+    Did a laser pointer for the helmet - It using phone's IMU to emulated a 3-dof controller
+    Wrote 4DStudio - a full featured content editor to create Augmented Reality experience
+    Made 4DSViewer - the viewer of the content edited in 4DStudio - with offline support
+
+**WebGL Consultant** *Independant work* __2014 to 2015__
+    Consulting work for international companies 
+    Mainly on three.js, 3D editors and VR engines.  
+
+**Beloola** *CTO* __2012 to 2014__
+    Leading the developer team to design a real time multiplayer game exploiting the latest new technologies. 
+    Using Web RTC, Web Audio and Web Socket. 
+
+*Further information available upon request*
 
 ------
 
@@ -17,27 +75,12 @@
 	Eight most active user 
 
 
- * **Twitter**  *3,807 followers*
-    *4,606* on @learningthreejs
+ * **Twitter**  *3,887 followers*
+    *4,627* on @learningthreejs
 	
 
  * **Google+** *2,730 followers* 
 	
-
-------
-
-### WebGL
-
-**Learning Three.js** - *Technical blog to learn three.js* [link](http://learningthreejs.com)
-	Varied content: 3D physics, performance, games, shadows, boilerplate.
-	"*You've made something quite awesome, sir*" - [Paul Irish](http://www.paulirish.com/) about learningthreejs - [here](https://twitter.com/paul_irish/status/127490017693138944) 
-
-**THREEx Game Extensions** - *40+ Extensions to help code games with three.js* [link](http://www.threejsgames.com/extensions/)
-	Game extensions to help you write games with three.js
-
-**Demos/Game Extensions** - *3D demos and minigames created as an independent webdev* [link](http://jeromeetienne.github.io/stellar7/)
-	Demos and games that I have created and talked about in Confs.	 
-
 ------
 
 ### Speaker at Tech Confs [slides](http://jeromeetienne.github.io/slides/)
@@ -65,52 +108,6 @@
 
 ------
 
-### Events and online meeting organizer 
-
-* **Three.js Interview** [link](https://www.youtube.com/watch?v=5pdxh9pjKzQ)
-    Online meeting with people who talk about three.js
-
-* **ParisJS** 
-    Evening meetup about js in paris. Around 70 persons/month. 
-
-* **Three.js g+ hangout** 
-    Online hangout for people to share about three.js
-
-* **Browser game g+ hangout** 
-    Online hangout for people to share about gamedev
-
-* **DemoJS** 
-    Demo scene contest in JS - june 2011 - sponsorized by Mozilla
-
-* **Html5 GameJam** 
-    Once a year a weekend contest to make html5 games
-
-------
-
-### Work History
-
-**Daqri** *Senior Staff Engineer & three.js teamlead* __2014 to 2017__
-    . Lead of the three.js team
-         . TODO advices to share knowledge
-         . Developper relation for three.js - Augmented Reality workshop At Oxford
-    . Made Daqri smart helmet to Daydream Ready
-         . Implemented support WebVR and Gamepad API in daqri browser
-         . Did a laser pointer for the helmet : It used phone's IMU to emulated a 3-dof controller. Thus any phone may become a controller.
-    . Wrote 4DStudio - a full featured content editor to create Augmented Reality experience
-         . Made 4DSViewer - the viewer of the content edited in 4DStudio - with offline support to enable to work in factories even without Wifi.
-
-**WebGL Consultant** *Independant work* __2014 to 2015__
-    Consulting work for international companies 
-    Mainly on three.js, 3D editors and VR engines.  
-
-**Beloola** *CTO* __2012 to 2014__
-    Leading the developer team to design a real time multiplayer game exploiting the latest new technologies. 
-    Using Web RTC, Web Audio and Web Socket. 
-
-*Further information available upon request*
-
-------
-
 ### Education
 
 **Master in Computer Vision** __1996 to 1997__
@@ -118,3 +115,11 @@
 
 **Computer engineering degree** __June 1997__
 	INSA Lyon/France (MSCS equiv) 
+
+------
+
+### Additional Facts
+
+* I implemented network stack at kernel in various OS. :)
+* I broke worldwide cryptography multiple times (little known fact :) 
+* I designed an network protocol to anonymize traffic on the internet - [cebolla](https://www.kernel.org/doc/ols/2002/ols2002-pages-55-64.pdf)
