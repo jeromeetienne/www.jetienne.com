@@ -19,20 +19,19 @@
         *Free and Open* : It is completely open source and free of charge!
         *Pure Standards* : It works on any phone with [webgl](http://caniuse.com/#feat=webgl) and [webrtc](http://caniuse.com/#feat=stream)
 
-**Implemented WebVR 3 times** - 
+**Implemented WebVR 3 times** - for Various Purposes
         One to make Daqri Smart Helmet daydream ready. 
         One to record and replay webvr. It is used as a way to record AR experiences and replay them to build mixed reality videos. 
         One as a way to expert ARToolkit positional tracking
 
 **Written 3 editor for 3d content** - one for game, one for architecture, one for Augmented Reality 
-    4D Studio: i wrote all the original code 
-    An architect wanted to simulate new furniture and new lighting in an existent apartment, and we worked on a proof of concept based on that. 
-    **TODO** detail the one for game.
+        *Augmented Reality* : 4D Studio: i wrote all the original code 
+        *Architechture* : An architect wanted to simulate new furniture and new lighting in an existent apartment, and we worked on a proof of concept based on that.
+        *Game* : we wanted to be able to easily edit lights directly in the game. 
 
 **Wrote a JS variant which support strong type checking and still remains backward compatible.**
-    [babel plugin](https://github.com/jeromeetienne/babel-plugin-jsdoced)
-    [jsdoced.js](http://jsdocedjs.org)
-
+        It is called [jsdoced.js](http://jsdocedjs.org). It automatically extracts jsdoc from your code. Using your jsdoc comments, it will generate  another javascript file which makes sure your jsdoc is respected during execution.
+        I implemented it as a [babel plugin](https://github.com/jeromeetienne/babel-plugin-jsdoced) to be easily integrated by people.
 
 **Wrote 50+ THREEx Game Extensions** - *50 Extensions to help code games with three.js* [link](http://www.threejsgames.com/extensions/)
 	Game extensions to help you write games with three.js
@@ -120,6 +119,6 @@
 
 ### Additional Facts
 
-* I implemented network stack at kernel in various OS. :)
+* I implemented a network stack at kernel level for a router. TCP stack, routing protocol OSPF/RIP etc.. :)
 * I broke worldwide cryptography multiple times (little known fact :) 
 * I designed an network protocol to anonymize traffic on the internet - [cebolla](https://www.kernel.org/doc/ols/2002/ols2002-pages-55-64.pdf)
